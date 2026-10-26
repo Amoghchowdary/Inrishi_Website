@@ -1,0 +1,23 @@
+INRISHI.IN -> GITHUB PAGES / HOSTINGER DNS
+
+Replace YOUR_GITHUB_USERNAME with the GitHub account that owns both Pages repositories.
+
+A     @        185.199.108.153      TTL 14400
+A     @        185.199.109.153      TTL 14400
+A     @        185.199.110.153      TTL 14400
+A     @        185.199.111.153      TTL 14400
+
+AAAA  @        2606:50c0:8000::153  TTL 14400
+AAAA  @        2606:50c0:8001::153  TTL 14400
+AAAA  @        2606:50c0:8002::153  TTL 14400
+AAAA  @        2606:50c0:8003::153  TTL 14400
+
+CNAME www      YOUR_GITHUB_USERNAME.github.io   TTL 14400
+CNAME partner  YOUR_GITHUB_USERNAME.github.io   TTL 14400
+
+TXT   _github-pages-challenge-YOUR_GITHUB_USERNAME
+      <paste the exact verification value GitHub gives you>
+      TTL 14400
+
+GitHub Pages custom domain in MAIN repo:    www.inrishi.in
+GitHub Pages custom domain in PARTNER repo: partner.inrishi.in
