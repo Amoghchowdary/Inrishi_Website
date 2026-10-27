@@ -3,6 +3,8 @@ import { HeadContent, Link, Outlet, createRootRouteWithContext, useRouter, useRo
 import { useEffect } from "react";
 import { CosmicEnvironment } from "@/components/cosmic-environment";
 
+import { siteHref } from "@/lib/site-path";
+import { getRuntimeConfig } from "@/lib/runtime-config";
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -26,7 +28,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <p className="mt-2 text-sm text-muted-foreground">Something went wrong. Please try again.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button onClick={() => { router.invalidate(); reset(); }} className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Try again</button>
-          <a href="/" className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground">Go home</a>
+          <a href={siteHref("/")} className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground">Go home</a>
         </div>
       </div>
     </div>
@@ -47,7 +49,7 @@ function RootComponent() {
     document.documentElement.dataset["inrishiSite"] = "main";
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
     if (!canonical) { canonical = document.createElement("link"); canonical.rel = "canonical"; document.head.appendChild(canonical); }
-    canonical.href = `${window.location.origin}${pathname === "/" ? "/" : pathname}`;
+    canonical.href = `${getRuntimeConfig().MAIN_ORIGIN}${pathname === "/" ? "/" : pathname}`;
   }, [pathname]);
 
   const isWorkspaceRoute =

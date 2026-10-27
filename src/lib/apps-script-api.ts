@@ -1,6 +1,6 @@
 import{getRuntimeConfig,isBackendConfigured}from"@/lib/runtime-config";
 type Role="public"|"customer"|"admin";type Envelope<T>={source:"INRISHI_APPS_SCRIPT";requestId:string;ok:boolean;data?:T;error?:string;code?:string};
-const KEYS={customer:"inrishi-v53-customer-session",admin:"inrishi-v53-admin-session"}as const;
+const KEYS={customer:"inrishi-v54-customer-session",admin:"inrishi-v54-admin-session"}as const;
 function role():Role{if(typeof window==="undefined")return"public";const p=location.pathname;if(p.startsWith("/r/")||p==="/admin")return"admin";if(p.startsWith("/customer"))return"customer";return"public"}
 export function getSessionToken(r:Exclude<Role,"public">){return typeof window==="undefined"?"":sessionStorage.getItem(KEYS[r])||""}
 export function setSessionToken(r:Exclude<Role,"public">,t:string){if(typeof window!=="undefined"){clearSessionToken(r);sessionStorage.setItem(KEYS[r],t)}}

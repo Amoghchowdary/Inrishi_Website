@@ -1,6 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
-// Generated route tree for Inrishi V53 MAIN production routes.
+// Generated route tree for Inrishi V54 MAIN production routes.
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as SampleWorkRouteImport } from './routes/sample-work'

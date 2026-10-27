@@ -47,4 +47,4 @@ if (errors.length) {
   console.error(errors.map(e => `ERROR: ${e}`).join("\n"));
   process.exit(1);
 }
-console.log(`V53 runtime-config API integrity passed: ${exported.size} export(s) available and all imports resolve.`);
+console.log(`V54 runtime-config API integrity passed: ${exported.size} export(s) available and all imports resolve.`);

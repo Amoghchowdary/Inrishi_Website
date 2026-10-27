@@ -1,1 +1,14 @@
-<!doctype html><html><head><meta charset="utf-8"><title>Inrishi</title><script>var path=location.pathname+location.search+location.hash;location.replace('/?/'+path.slice(1).replace(/&/g,'~and~'));</script></head><body></body></html>
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Inrishi</title>
+<script>
+(function(l){
+  var repo="Inrishi_Website";
+  var parts=l.pathname.split('/').filter(Boolean);
+  var onGithub=/\.github\.io$/i.test(l.hostname) && (parts[0]||'').toLowerCase()===repo.toLowerCase();
+  var base=onGithub?('/'+parts[0]):'';
+  var route=l.pathname.slice(base.length);
+  if(!route.startsWith('/')) route='/'+route;
+  var encoded=route.slice(1).replace(/&/g,'~and~');
+  l.replace(base+'/?/'+encoded+l.search+l.hash);
+})(window.location);
+</script></head><body></body></html>

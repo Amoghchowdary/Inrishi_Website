@@ -1,7 +1,5 @@
-# INRISHI V53 production release
+# INRISHI Main V54 Production Release
 
-This repository is production-only. It contains frontend source, assets, production validation scripts, and GitHub Actions deployment workflow. It intentionally does not contain Apps Script backend source, backend secrets, local deployment helpers, or Git metadata inside the distributed ZIP.
+V54 fixes GitHub Pages blank-screen deployment by using relative Vite assets, dynamic TanStack Router basepath detection, repository-aware SPA 404 recovery, and deployment-safe internal links. The same build supports `https://amoghchowdary.github.io/Inrishi_Website/` and the production custom-domain root `https://www.inrishi.in/`.
 
-Production Apps Script endpoint: `https://script.google.com/macros/s/AKfycbzQ1YMIghWp_p3hy3NxsJraffY_AjLA77JlyfYF7YvkGlylLnV2MiDgJViLjByn9ntq/exec`
-
-Site identity: `main`
+Design and backend behavior remain unchanged from the approved release.
