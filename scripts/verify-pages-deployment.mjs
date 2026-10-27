@@ -12,4 +12,4 @@ for(const route of ["/", "/sample-work", "/contact", "/customer-login", "/custom
 const sourceFiles=[];function walk(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){const f=path.join(d,e.name);if(e.isDirectory())walk(f);else if(/\.(?:ts|tsx)$/.test(e.name))sourceFiles.push(f);}}walk("src");
 for(const f of sourceFiles){const s=read(f);if(/href="\//.test(s))errors.push(`Hard-rooted internal href remains: ${f}`);if(/location\.assign\("\//.test(s))errors.push(`Hard-rooted location.assign remains: ${f}`);if(/const\s+\w*Href\s*=\s*["']\//.test(s))errors.push(`Hard-rooted route variable remains: ${f}`);}
 if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}
-console.log("V57 MAIN GitHub Pages path verification passed for custom-domain root and /Inrishi_Website/ project path.");
+console.log("V59 MAIN GitHub Pages path verification passed for custom-domain root and /Inrishi_Website/ project path.");

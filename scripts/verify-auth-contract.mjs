@@ -14,4 +14,4 @@ if(!workspace.includes('Production backend')||!workspace.includes('Pending partn
 const backend="https://script.google.com/macros/s/AKfycbzQ1YMIghWp_p3hy3NxsJraffY_AjLA77JlyfYF7YvkGlylLnV2MiDgJViLjByn9ntq/exec";
 if(!runtime.includes(backend)||!publicConfig.includes(backend)) errors.push("Approved Apps Script backend must remain embedded in both runtime layers.");
 if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}
-console.log("V57 main auth/control contract passed: Admin login, production snapshot and write actions are locked.");
+console.log("V59 main auth/control contract passed: Admin login, production snapshot and write actions are locked.");

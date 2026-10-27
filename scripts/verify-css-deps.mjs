@@ -40,4 +40,4 @@ if(!refs.some(r=>r.pkgName==="tw-animate-css")) errors.push("tw-animate-css impo
 const dialog=fs.readFileSync(path.join(root,"src/components/ui/dialog.tsx"),"utf8");
 for(const utility of ["animate-in","animate-out","fade-in-0","fade-out-0","zoom-in-95","zoom-out-95"]) if(!dialog.includes(utility)) errors.push(`Dialog animation utility is missing or changed: ${utility}`);
 if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1);}
-console.log(`V57 CSS dependency integrity passed: ${refs.length} package CSS reference(s) declared${fs.existsSync(path.join(root,"node_modules"))?" and installed":""}.`);
+console.log(`V59 CSS dependency integrity passed: ${refs.length} package CSS reference(s) declared${fs.existsSync(path.join(root,"node_modules"))?" and installed":""}.`);

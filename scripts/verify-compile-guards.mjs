@@ -10,4 +10,7 @@ must(!/\bcanvas\.(?:width|height|style)\b/.test(cosmic),"Nullable canvas ref sti
 must(api.includes("code:string|undefined")||api.includes("code: string | undefined"),"AppsScriptBackendError strict optional-property fix missing.");
 must(!vite.includes('minify: "esbuild"')&&vite.includes('minify: "oxc"'),"Vite Oxc minifier guard failed.");
 must(admin.includes("AdminWorkspace")&&admin.includes("Control center")&&admin.includes("Administrator sign in"),"Admin workspace implementation missing.");
-if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V57 main compile regression guards passed.");
+
+if(admin.includes("{customerId,progressId,status,percent,detail}")) errors.push("Admin progress payload must omit optional detail when undefined under exactOptionalPropertyTypes.");
+if(!admin.includes("...(detail===undefined?{}:{detail})")) errors.push("Admin progress optional detail guard is missing.");
+if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V59 main compile regression guards passed.");

@@ -7,4 +7,4 @@ for(const marker of ["Dashboard","Website","Website inquiries","Customers","Part
 for(const action of ["admin.control.snapshot","admin.partner.status","admin.customer.status","admin.project.progress","admin.controls.save"]) if(!adminService.includes(action)) errors.push(`Admin service action missing: ${action}`);
 if(!customer.includes("getCustomerPortalSnapshotFn")) errors.push("Customer portal must load production-scoped data directly from Apps Script.");
 if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}
-console.log("V57 Main portal workflow verification passed: Admin modules/data writes and Customer production snapshot are present.");
+console.log("V59 Main portal workflow verification passed: Admin modules/data writes and Customer production snapshot are present.");
