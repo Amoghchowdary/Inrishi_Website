@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { PartnerLogin } from "./partner-login";
-import { ensurePartnerHost } from "@/lib/partner-host";
-export const Route=createFileRoute("/login")({component:Page});function Page(){useEffect(()=>ensurePartnerHost("/login"),[]);return <PartnerLogin/>}
+import { getRuntimeConfig } from "@/lib/runtime-config";
+export const Route=createFileRoute("/login")({head:()=>({meta:[{title:"Partner Login | Inrishi"},{name:"robots",content:"noindex, nofollow"}]}),component:ExternalPartnerRedirect});
+function ExternalPartnerRedirect(){useEffect(()=>{window.location.replace(`${getRuntimeConfig().PARTNER_ORIGIN}/login`)},[]);return <main className="workspace-shell grid min-h-screen place-items-center px-5"><div className="workspace-panel p-8 text-center"><h1 className="font-display text-2xl font-semibold">Opening Inrishi Partner Network</h1><p className="mt-3">Redirecting to partner.inrishi.in…</p><a className="mt-5 inline-flex font-semibold text-emerald-700" href={`${getRuntimeConfig().PARTNER_ORIGIN}/login`}>Continue</a></div></main>}

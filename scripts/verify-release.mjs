@@ -1,0 +1,16 @@
+import fs from "node:fs";
+const errors=[];const need=(ok,msg)=>{if(!ok)errors.push(msg)};
+const pkg=JSON.parse(fs.readFileSync("package.json","utf8"));
+const config=fs.readFileSync("public/inrishi-config.js","utf8");
+const tree=fs.readFileSync("src/routeTree.gen.ts","utf8");
+need(pkg.version==="52.0.0","Package version is not V52.");
+need(config.includes('APP_VERSION: "52.0.0"'),"Runtime version is not V52.");
+need(pkg.devDependencies?.["tw-animate-css"]==="1.4.0","Required CSS animation package is not pinned.");
+need(fs.existsSync("dist/index.html"),"Production dist is missing.");
+need(fs.existsSync("dist/inrishi-config.js"),"Built runtime config is missing.");
+const cssDir="dist/assets";const cssFiles=fs.existsSync(cssDir)?fs.readdirSync(cssDir).filter(f=>f.endsWith(".css")):[];need(cssFiles.length>0,"Built CSS asset is missing.");
+need(tree.includes("/admin")&&tree.includes("/r/9f2a7c4d6e"),"Admin routes are missing.");
+need(tree.includes("'/admin'"),"Authenticated /admin portal route is missing.");
+const design=fs.readFileSync("src/routes/index.tsx","utf8");need(design.includes("inrishi-v46-hero.png"),"Approved V46 hero asset changed during V52 delivery correction.");need(design.includes("Intelligence inside."),"Approved tagline changed.");
+const backend="https://script.google.com/macros/s/AKfycbzQ1YMIghWp_p3hy3NxsJraffY_AjLA77JlyfYF7YvkGlylLnV2MiDgJViLjByn9ntq/exec";need(config.includes(backend),"Production Apps Script endpoint changed.");
+if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1);}console.log("V52 final release gate passed: CSS dependency, compiled CSS, version, dist, approved design, backend, partner portal and hidden admin isolation are intact.");

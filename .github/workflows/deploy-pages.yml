@@ -29,6 +29,8 @@ jobs:
           node-version: 22
       - name: Validate dependency manifest
         run: node scripts/verify-dependencies.mjs
+      - name: Validate CSS package imports
+        run: node scripts/verify-css-deps.mjs
       - name: Install dependencies
         run: npm install --include=dev --no-audit --no-fund --strict-peer-deps
       - name: Confirm dependency tree
@@ -38,8 +40,6 @@ jobs:
         run: |
           test -n "$SITE_DOMAIN" || (echo "SITE_DOMAIN is missing" && exit 1)
           echo "Deploying custom domain: $SITE_DOMAIN"
-      - name: Audit production dependencies
-        run: npm run audit:prod
       - name: Production acceptance checks
         run: npm run preflight
       - name: Prepare custom-domain Pages output

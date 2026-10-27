@@ -1,17 +1,17 @@
-# Inrishi V46 Design Exit Control
+# Inrishi V52 Design Exit Control
 
-V46 restores the preserved V38 homepage direction while retaining all V43 compile, dependency and backend fixes.
+V52 preserves the approved V46/V38 public design while correcting security and portal routing.
 
-Locked homepage controls:
-- full-bleed V38 cosmic scene with galaxy, planets, asteroid field and visible stars;
-- cosmic backdrop stored locally so it cannot disappear when remote imagery is unavailable;
-- previous robot + INRISHI hero artwork;
-- uploaded green INRISHI logo used only as the top-left brand mark and favicon family;
-- hero brand line: `Inrishi.`;
+Locked public controls:
+- full-bleed cosmic scene with galaxy, planets, asteroid field and visible stars;
+- local cosmic backdrop;
+- approved robot + INRISHI hero artwork;
+- approved uploaded logo treatment from V46;
 - tagline: `Intelligence inside.`;
 - supporting line: `Connecting people, processes and data with software that thinks ahead.`;
 - `Explore solutions` and `Start a conversation` CTAs;
 - `EXPLORE OUR UNIVERSE` cue;
-- dark/translucent V38 public homepage surfaces rather than the later white-card homepage redesign.
+- V46 transparent-at-rest → white-on-hover service tile interaction;
+- V45/V46 readability sizing retained.
 
-`npm run verify:design` is part of `npm run preflight`. Deployment must stop if any of these controls regress.
+V52 portal/security changes must not modify these public visual controls. `npm run verify:design` is included in `npm run preflight`.

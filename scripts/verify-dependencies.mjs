@@ -1,31 +1,26 @@
 import fs from "node:fs";
 
-const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"));
-const errors = [];
-const version = (name, group) => pkg[group]?.[name] ?? "";
-const parts = (value) => String(value).replace(/^[^0-9]*/, "").split(".").map((n) => Number.parseInt(n, 10) || 0);
-const atLeast = (value, target) => {
-  const a = parts(value); const b = parts(target);
-  for (let i = 0; i < 3; i += 1) {
-    if ((a[i] ?? 0) > (b[i] ?? 0)) return true;
-    if ((a[i] ?? 0) < (b[i] ?? 0)) return false;
-  }
-  return true;
-};
-const vite = version("vite", "devDependencies");
-const tailwindVite = version("@tailwindcss/vite", "dependencies");
-const tailwind = version("tailwindcss", "dependencies");
-const reactPlugin = version("@vitejs/plugin-react", "devDependencies");
-if (pkg.name !== "inrishi-website-v46-production") errors.push("Unexpected package name.");
-if (pkg.version !== "46.0.0") errors.push("V46 package version must be 46.0.0.");
-if (vite !== "8.1.5") errors.push("Vite must remain pinned to 8.1.5.");
-if (!atLeast(tailwindVite, "4.3.0")) errors.push("@tailwindcss/vite must be 4.3.0 or newer for Vite 8.");
-if (tailwindVite !== tailwind) errors.push("@tailwindcss/vite and tailwindcss must use the same pinned version.");
-if (!atLeast(reactPlugin, "5.2.0")) errors.push("@vitejs/plugin-react must be 5.2.0 or newer.");
-if (!pkg.engines?.node?.includes("22.12.0")) errors.push("Node production engine floor must remain 22.12.0.");
-const viteConfig = fs.readFileSync("vite.config.ts", "utf8");
-if (/minify\s*:\s*["\']esbuild["\']/.test(viteConfig)) errors.push("Vite 8 must not use deprecated esbuild minification. Use Oxc.");
-if (!/minify\s*:\s*["\']oxc["\']/.test(viteConfig)) errors.push("Vite 8 production minifier must be Oxc.");
-for (const forbidden of ["dev","preview","start","push:git","configure"]) if (pkg.scripts?.[forbidden]) errors.push(`Production package must not expose script: ${forbidden}`);
-if (errors.length) { console.error(errors.map((e)=>`ERROR: ${e}`).join("\n")); process.exit(1); }
-console.log(`Dependency manifest verified: Vite ${vite}, Tailwind Vite ${tailwindVite}, React plugin ${reactPlugin}.`);
+const pkg=JSON.parse(fs.readFileSync("package.json","utf8"));
+const errors=[];
+const runtimeAllow=["@radix-ui/react-dialog","@radix-ui/react-slot","@tanstack/react-query","@tanstack/react-router","class-variance-authority","clsx","lucide-react","react","react-dom","tailwind-merge"].sort();
+const actualRuntime=Object.keys(pkg.dependencies??{}).sort();
+const vite=pkg.devDependencies?.vite??"";
+const tailwindVite=pkg.devDependencies?.["@tailwindcss/vite"]??"";
+const tailwind=pkg.devDependencies?.tailwindcss??"";
+const twAnimate=pkg.devDependencies?.["tw-animate-css"]??"";
+const reactPlugin=pkg.devDependencies?.["@vitejs/plugin-react"]??"";
+if(pkg.name!=="inrishi-website-v52-main-production")errors.push("Unexpected package name.");
+if(pkg.version!=="52.0.0")errors.push("V52 package version must be 52.0.0.");
+if(JSON.stringify(actualRuntime)!==JSON.stringify(runtimeAllow))errors.push(`Runtime dependency allowlist mismatch: ${actualRuntime.join(", ")}`);
+if(vite!=="8.3.5")errors.push("Vite must be pinned to security-patched 8.3.5.");
+if(tailwindVite!=="4.3.3"||tailwind!=="4.3.3")errors.push("Tailwind Vite and Tailwind CSS must be pinned to 4.3.3 as build-only dependencies.");
+if(twAnimate!=="1.4.0")errors.push("tw-animate-css must be pinned to 1.4.0 because src/styles.css imports it.");
+if(reactPlugin!=="5.2.0")errors.push("@vitejs/plugin-react must remain 5.2.0.");
+for(const removed of ["zod","@hookform/resolvers","react-hook-form","recharts","sonner","cmdk","vaul"])if(pkg.dependencies?.[removed]||pkg.devDependencies?.[removed])errors.push(`Unused/high-risk dependency must not return: ${removed}`);
+for(const buildOnly of ["vite","@vitejs/plugin-react","@tailwindcss/vite","tailwindcss","tw-animate-css","typescript"])if(pkg.dependencies?.[buildOnly])errors.push(`Build-only package must not be a production dependency: ${buildOnly}`);
+if(!pkg.engines?.node?.includes("22.12.0"))errors.push("Node engine floor must remain 22.12.0.");
+const viteConfig=fs.readFileSync("vite.config.ts","utf8");
+if(/minify\s*:\s*["']esbuild["']/.test(viteConfig))errors.push("Deprecated esbuild minification must not return.");
+if(!/minify\s*:\s*["']oxc["']/.test(viteConfig))errors.push("Vite production minifier must remain Oxc.");
+if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1);}
+console.log(`V52 dependency policy verified: Vite ${vite}; Tailwind ${tailwind}; tw-animate-css ${twAnimate}; ${actualRuntime.length} runtime packages.`);

@@ -1,6 +1,5 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { PartnerPortal } from "./partner-portal";
-import { getCurrentPartnerFn } from "@/services/partner-auth";
-import { ensurePartnerHost } from "@/lib/partner-host";
-export const Route=createFileRoute("/portal")({loader:async()=>{const p=await getCurrentPartnerFn();if(!p)throw redirect({to:"/login"});return p},component:Page});function Page(){const session=Route.useLoaderData();useEffect(()=>ensurePartnerHost("/portal"),[]);return <PartnerPortal session={session}/>}
+import { getRuntimeConfig } from "@/lib/runtime-config";
+export const Route=createFileRoute("/portal")({head:()=>({meta:[{title:"Partner Portal | Inrishi"},{name:"robots",content:"noindex, nofollow"}]}),component:ExternalPartnerRedirect});
+function ExternalPartnerRedirect(){useEffect(()=>{window.location.replace(`${getRuntimeConfig().PARTNER_ORIGIN}/portal`)},[]);return <main className="workspace-shell grid min-h-screen place-items-center px-5"><div className="workspace-panel p-8 text-center"><h1 className="font-display text-2xl font-semibold">Opening Inrishi Partner Network</h1><p className="mt-3">Redirecting to partner.inrishi.in…</p><a className="mt-5 inline-flex font-semibold text-emerald-700" href={`${getRuntimeConfig().PARTNER_ORIGIN}/portal`}>Continue</a></div></main>}

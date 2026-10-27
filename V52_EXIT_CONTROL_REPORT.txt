@@ -1,0 +1,21 @@
+INRISHI V52 RELEASE EXIT CONTROL
+================================
+ADMIN SIGN-IN FIX
+- Restored a robust administrator login contract.
+- Administrator input accepts ID or registered email.
+- Frontend sends id + identifier + email compatibility keys to the Apps Script action.
+- Successful login requires a backend session token before entering the Admin portal.
+- Sign-in loading/error state is explicit.
+
+ADMIN LOGO FIX
+- Admin sign-in and Admin header use the approved INRISHI public brand asset.
+- Legacy forced white logo card/padding is not used for Admin.
+- Scoped admin-brand-logo styling is verified.
+
+BACKEND
+- Approved Apps Script /exec endpoint remains embedded in public config and TypeScript fallback.
+
+NEW EXIT CONTROL
+- verify:auth-contract runs before audits/typecheck/build.
+- Main verifies the complete Admin auth request contract + logo policy.
+- Partner verifies all Partner auth actions + backend lock.

@@ -18,5 +18,4 @@ jobs:
       - run: node scripts/verify-dependencies.mjs
       - run: npm install --include=dev --no-audit --no-fund --strict-peer-deps
       - run: npm ls --depth=0
-      - run: npm run audit:prod
       - run: npm run preflight

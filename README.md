@@ -1,38 +1,52 @@
-# INRISHI Website V46
+# INRISHI Website V52
 
 Production frontend source for INRISHI Private Limited.
 
-- Website version: `46.0.0`
-- Homepage visual authority: preserved V38 design
+- Website version: `52.0.0`
+- Public visual authority: approved V46/V38 cosmic design, unchanged in V52
 - Tagline: `Intelligence inside.`
-- Production backend: unchanged Google Apps Script Web App
+- Production backend: existing Google Apps Script Web App, unchanged
+- Main site: `https://www.inrishi.in`
+- Partner origin: `https://partner.inrishi.in`
 
-## V46 design restoration
+## V52 purpose
 
-V46 restores the approved cosmic homepage direction after the V41 visual regression:
+V52 is a security and portal-isolation correction. It does not redesign the approved public website.
 
-- full-bleed galaxy / planet / asteroid / meteor environment;
-- centered INRISHI hero composition over the cosmic background;
-- the uploaded INRISHI logo is used as the public header, hero and footer brand asset;
-- `Solutions`, `Sample Work`, `Our approach`, `Contact` navigation rhythm is restored;
-- hero copy is restored to `Connecting people, processes and data with software that thinks ahead.`;
-- `Explore solutions`, `Start a conversation` and `EXPLORE OUR UNIVERSE` are restored;
-- the V41 horizontal service-chip strip is removed from the hero;
-- white customer-facing title cards remain below the hero where previously approved.
+### Security correction
+
+- Vite is pinned to `8.3.5`.
+- Tailwind/Vite build tooling is isolated in `devDependencies`.
+- Unused Zod 3.x and other unused packages are removed from the runtime dependency tree.
+- Runtime dependencies are restricted to the packages actually imported by `src/`.
+- `npm audit --omit=dev --audit-level=high` is a mandatory preflight gate.
+
+### Partner Portal correction
+
+Main-domain fallback routes:
+- `/partner`
+- `/partner-login`
+- `/partner-register`
+- `/partner-portal`
+
+Partner-domain aliases:
+- `/`
+- `/login`
+- `/register`
+- `/portal`
+
+The partner website now exposes `Partner Portal` explicitly. The main-site footer also exposes Partner Network and Partner Login fallback links.
+
+### Admin isolation
+
+- The public `/admin` alias is removed.
+- Super Admin remains only at the hidden route configured in `public/inrishi-config.js`.
+- Partner routes and partner authentication are verified not to import or use admin portal/session code.
 
 ## Exit-control gate
 
-`npm run verify:design` locks the approved V46 homepage composition and the uploaded logo bytes. It is included in `npm run preflight` so a future design regression fails before deployment.
+`npm run preflight` is the single release gate. It runs configuration validation, dependency policy, design lock, compile guards, route isolation, production audit, TypeScript, production-source checks, UI checks, build, dist verification, and final release verification.
 
-## Build corrections retained from V41
+## V52 release integrity
 
-- Vite `8.1.5` with `@tailwindcss/vite` / `tailwindcss` `4.3.3`;
-- Vite 8 native Oxc minification;
-- strict TypeScript optional-property correction;
-- Partner Login and Partner Registration `Button` imports;
-- Node `22.12+` support without the obsolete `<25` ceiling.
-
-
-## V46 approved delta
-
-V46 preserves the V38/V44 cosmic layout and production functionality. The only visual changes are a refined robot/INRISHI hero holding composition and larger customer-facing service/body typography for readability.
+V52 restores `tw-animate-css` 1.4.0 because `src/styles.css` imports it and Radix dialog transitions use its animation utilities. The release gate validates CSS package imports and the compiled production stylesheet. GitHub Actions installs the pinned manifest with strict peer-dependency validation, then reruns the CSS integrity gate against node_modules.

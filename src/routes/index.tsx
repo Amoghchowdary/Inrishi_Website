@@ -11,7 +11,6 @@ import heroArt from "@/assets/inrishi-v46-hero.png";
 import inrishiLogo from "@/assets/inrishi-public-logo.png";
 import { loadPortalStore, portalStoreEventName, type PortalStore } from "@/lib/portal-store";
 import { submitWebsiteInquiry } from "@/lib/business-api";
-import { PartnerWebsite } from "./partner";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
@@ -21,7 +20,7 @@ export const Route = createFileRoute("/")({
     { property: "og:description", content: "Intelligent software and AI-powered transformation built around the way your business works." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
-  ]}), component: HostAwareHome,
+  ]}), component: Home,
 });
 
 const products = [
@@ -35,8 +34,6 @@ const products = [
   { number:"08", title:"Website Design", category:"A complete business website, not just pages", description:"We plan, design, build and launch a responsive website, then continue with search-readiness and post-launch SEO support.", detail:"The website engagement covers the customer-facing experience and the technical work needed to launch it properly. After launch, an Inrishi SEO support executive is assigned for 15 days to complete the agreed on-page SEO and indexing tasks.", includes:["Website planning, page structure and visual design","Responsive development for mobile, tablet and desktop","Domain/deployment connection and launch checks","SEO page titles, descriptions, headings, image text and relevant tagging","Sitemap, robots and indexing-readiness setup","Google Search Console and analytics connections where access is provided","Performance, mobile usability and basic technical checks","15-day assigned SEO executive after launch","During the 15-day period: indexing checks, sitemap submission, metadata/tag review and agreed on-page SEO corrections","SEO handover summary after the support period"], outcome:"A professional website that is launched correctly, connected to essential search tools and supported through the first 15 days of SEO and indexing setup without promising a specific search ranking.", icon:Monitor },
 ];
 type Product=(typeof products)[number];
-function HostAwareHome(){return <><div className="host-main-only"><Home/></div><div className="host-partner-only"><PartnerWebsite/></div></>}
-
 function Home(){
  const [selected,setSelected]=useState<Product|null>(null); const [inquiryOpen,setInquiryOpen]=useState(false); const [menuOpen,setMenuOpen]=useState(false); const [inquiryStatus,setInquiryStatus]=useState<"idle"|"sending"|"sent"|"error">("idle"); const [inquiryMessage,setInquiryMessage]=useState(""); const [form,setForm]=useState({name:"",email:"",phone:"",company:"",message:""}); const [portalConfig,setPortalConfig]=useState<PortalStore|null>(null);
  useEffect(()=>{const sync=()=>setPortalConfig(loadPortalStore());sync();const event=portalStoreEventName();window.addEventListener(event,sync);return()=>window.removeEventListener(event,sync)},[]);

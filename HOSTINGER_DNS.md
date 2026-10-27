@@ -1,6 +1,16 @@
-# Hostinger DNS target
+# INRISHI V52 DNS / Pages
 
-Main website custom domain: `www.inrishi.in`.
-Partner origin configured by the application: `partner.inrishi.in`.
+## Main site
+GitHub Pages custom domain: `www.inrishi.in`
 
-Preserve existing email-related MX/SPF/DKIM/DMARC records when changing website DNS. Configure the GitHub Pages custom domain in repository Settings → Pages and use the DNS values supplied/verified there.
+## Partner site
+The Partner Network is a separate GitHub Pages site/repository.
+GitHub Pages custom domain: `partner.inrishi.in`
+
+Hostinger DNS record:
+- Type: CNAME
+- Name: partner
+- Target: Amoghchowdary.github.io
+- TTL: default / 14400
+
+Configure the custom domain in the Partner repository under Settings → Pages before relying on DNS. Do not use a wildcard record.

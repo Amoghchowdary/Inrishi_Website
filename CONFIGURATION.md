@@ -1,7 +1,9 @@
 # Production configuration
 
-Browser-visible production settings are in `public/inrishi-config.js`.
+Browser-visible settings are in `public/inrishi-config.js`.
 
-The Apps Script Web App URL is a public endpoint identifier, not a database credential. Backend-only values such as Sheet IDs, Drive IDs, password material, sessions and account records remain inside the Apps Script environment.
+The production Apps Script Web App URL is unchanged. Backend-only values such as Sheet IDs, Drive IDs, password material, sessions and account records remain inside the Apps Script environment.
+
+Main-domain routes include the customer portal and explicit partner fallbacks. Partner-domain aliases remain configured for `partner.inrishi.in`.
 
 GitHub Pages repository variable for the main site: `SITE_DOMAIN=www.inrishi.in`.

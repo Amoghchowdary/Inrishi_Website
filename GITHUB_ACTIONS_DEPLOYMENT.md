@@ -2,6 +2,12 @@
 
 `.github/workflows/deploy-pages.yml` is the production deployment workflow.
 
-On a push to `main` it validates the dependency manifest, installs strict peer dependencies, confirms the installed tree, audits production dependencies, runs the production acceptance checks, builds the website, validates the output and deploys `dist/` to GitHub Pages.
+On a push to `main` it:
+1. validates the dependency manifest;
+2. installs strict peer dependencies;
+3. confirms the installed dependency tree;
+4. runs the complete `npm run preflight` release gate;
+5. prepares the custom-domain Pages output;
+6. publishes `dist/` to GitHub Pages.
 
-The V46 dependency set keeps Vite 8.1.5 and uses `@tailwindcss/vite` / `tailwindcss` 4.3.3 for the Vite 8 production build.
+V52 pins Vite to `8.3.5`, keeps `@tailwindcss/vite` / `tailwindcss` at `4.3.3`, and treats all build tooling as development-only dependencies. The production audit is owned by `preflight` so local testing and GitHub Actions execute the same security gate.
