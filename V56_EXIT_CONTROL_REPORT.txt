@@ -1,0 +1,15 @@
+INRISHI V56 PRODUCTION TRANSPORT FIX
+===================================
+ROOT CAUSE
+Apps Script HTML Service executes on dynamic sandbox hosts such as n-...-script.googleusercontent.com. V55 accepted only exact script.google.com or script.googleusercontent.com origins, so valid backend postMessage responses were discarded and every portal timed out.
+
+V56 FIX
+- Main and Partner accept only trusted Google Apps Script origins, including dynamic *-script.googleusercontent.com sandbox hosts.
+- Requests remain correlated with a cryptographically strong requestId.
+- Backend responses include version/site/requestId.
+- Apps Script retries the postMessage response once after 120 ms for wrapper/sandbox timing.
+- Backend caches request results by requestId for 180 seconds to prevent duplicate side effects if a browser retries the same request.
+- No backend .gs source is included in either frontend repository.
+
+PRODUCTION ONLY
+GitHub Actions remains the build/deployment gate. Do not use localhost as an acceptance environment.
