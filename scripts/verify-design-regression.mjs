@@ -11,8 +11,8 @@ const footer=read("src/components/site-footer.tsx");
 const html=read("index.html");
 const config=read("public/inrishi-config.js");
 
-check(config.includes('APP_VERSION: "56.0.0"'),"Design gate must run against V56 runtime config.");
-check(home.includes('import heroArt from "@/assets/inrishi-v46-hero.png";'),"V56 refined robot/INRISHI hero asset is not active.");
+check(config.includes('APP_VERSION: "57.0.0"'),"Design gate must run against V57 runtime config.");
+check(home.includes('import heroArt from "@/assets/inrishi-v46-hero.png";'),"V57 refined robot/INRISHI hero asset is not active.");
 check(home.includes('import inrishiLogo from "@/assets/inrishi-public-logo.png";'),"Approved brand logo is not assigned to the header.");
 check(home.includes('className="public-brand-logo"'),"Top-left brand logo is missing.");
 check(!home.includes('section-public-brand-logo'),"Public brand logo must not be repeated inside homepage sections.");
@@ -20,8 +20,8 @@ check(home.includes('>Intelligence inside.</p>'),'Hero tagline must remain exact
 check(home.includes("Explore solutions"),"Explore solutions CTA is missing.");
 check(home.includes("Start a conversation"),"Start a conversation CTA is missing.");
 check(home.includes("EXPLORE OUR UNIVERSE"),"Explore-universe cue is missing.");
-check(home.includes('text-base leading-8 text-muted-foreground'),"Service detail body typography has regressed below the V56 readability baseline.");
-check(home.includes('text-base leading-7 text-muted-foreground'),"Service list/outcome typography has regressed below the V56 readability baseline.");
+check(home.includes('text-base leading-8 text-muted-foreground'),"Service detail body typography has regressed below the V57 readability baseline.");
+check(home.includes('text-base leading-7 text-muted-foreground'),"Service list/outcome typography has regressed below the V57 readability baseline.");
 check(home.includes('text-[28px] font-semibold'),"Service detail heading size has regressed.");
 
 check(cosmic.includes('import v38Backdrop from "@/assets/v38-cosmic-reference.jpg";'),"Local V38 cosmic backdrop is missing.");
@@ -34,11 +34,11 @@ check(styles.includes(".v38-panel"),"V38 dark/translucent homepage panels are mi
 check(!footer.includes("inrishi-public-logo.png"),"Brand logo must not be repeated in the footer.");
 check(html.includes('%BASE_URL%favicon.png'),"Approved favicon is not referenced through Vite BASE_URL.");
 check(styles.includes("V46 — exact public logo + transparent-to-white service tile interaction."),"V46 logo/tile interaction CSS block is missing.");
-check(styles.includes("background: transparent !important;"),"V56 tiles must be transparent at rest.");
-check(styles.includes(".v38-panel:hover {"),"V56 white-hover tile state is missing.");
-check(styles.includes("background: #ffffff !important;"),"V56 tiles must become white on hover.");
-check(styles.includes(".v38-panel:hover h1"),"V56 hover contrast rules for tile headings are missing.");
-check(styles.includes(".v38-panel:hover .solution-icon-chip"),"V56 hover icon contrast rules are missing.");
+check(styles.includes("background: transparent !important;"),"V57 tiles must be transparent at rest.");
+check(styles.includes(".v38-panel:hover {"),"V57 white-hover tile state is missing.");
+check(styles.includes("background: #ffffff !important;"),"V57 tiles must become white on hover.");
+check(styles.includes(".v38-panel:hover h1"),"V57 hover contrast rules for tile headings are missing.");
+check(styles.includes(".v38-panel:hover .solution-icon-chip"),"V57 hover icon contrast rules are missing.");
 
 const expected={
   "src/assets/inrishi-public-logo.png":"a8ba659188c2b8b522fd7c82d5b6be5b514ad7115c71bbe1d95ea5334d49da45",
@@ -48,8 +48,8 @@ const expected={
   "src/assets/v38-cosmic-reference.jpg":"d61ab658a5fb72d4c4c284c28600b71cde5f17f99f81d66386824dd7b0bd0418"
 };
 for(const [asset,hash] of Object.entries(expected)){
-  check(fs.existsSync(asset),`Missing V56 design asset: ${asset}`);
+  check(fs.existsSync(asset),`Missing V57 design asset: ${asset}`);
   if(fs.existsSync(asset)){const actual=crypto.createHash("sha256").update(fs.readFileSync(asset)).digest("hex");check(actual===hash,`Approved design asset changed: ${asset}`);}
 }
 if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1);}
-console.log("V56 design exit control passed: approved V46 visual design is unchanged while V56 security/portal corrections remain outside the public design system.");
+console.log("V57 design exit control passed: approved V46 visual design is unchanged while V57 security/portal corrections remain outside the public design system.");

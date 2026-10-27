@@ -16,4 +16,4 @@ if(source.includes('function safeOrigin(o:string){return /^https:\\/\\/(?:script
   errors.push('Legacy exact-host Apps Script origin filter is still present.');
 }
 if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}
-console.log("V56 Apps Script transport verified: dynamic Google sandbox origins, request correlation and production timeout handling are locked.");
+console.log("V57 Apps Script transport verified: dynamic Google sandbox origins, request correlation and production timeout handling are locked.");

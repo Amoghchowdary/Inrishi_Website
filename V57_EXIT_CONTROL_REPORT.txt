@@ -1,0 +1,10 @@
+INRISHI MAIN V57 PRODUCTION EXIT CONTROL
+======================================
+- Approved public design preserved.
+- Admin Control Center rebuilt around authenticated production snapshot/write APIs.
+- Admin modules: Dashboard, Website, Inquiries, Customers, Partners, Projects, Security.
+- Partner approval/status, customer status, project progress and website controls write directly to Apps Script.
+- Customer portal loads a scoped production snapshot directly from Apps Script.
+- Explicit loading, error and empty states replace silent blank panels.
+- Apps Script transport/origin protections from V56 retained.
+- GitHub Pages route/base-path recovery retained.

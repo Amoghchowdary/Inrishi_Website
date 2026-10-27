@@ -10,4 +10,4 @@ must(!/\bcanvas\.(?:width|height|style)\b/.test(cosmic),"Nullable canvas ref sti
 must(api.includes("code:string|undefined")||api.includes("code: string | undefined"),"AppsScriptBackendError strict optional-property fix missing.");
 must(!vite.includes('minify: "esbuild"')&&vite.includes('minify: "oxc"'),"Vite Oxc minifier guard failed.");
 must(admin.includes("AdminWorkspace")&&admin.includes("Control center")&&admin.includes("Administrator sign in"),"Admin workspace implementation missing.");
-if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V56 main compile regression guards passed.");
+if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V57 main compile regression guards passed.");

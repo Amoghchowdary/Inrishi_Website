@@ -10,7 +10,7 @@ function isTrustedAppsScriptOrigin(origin:string){
 }
 
 type Role="public"|"customer"|"admin";
-const KEYS={customer:"inrishi-v56-customer-session",admin:"inrishi-v56-admin-session"}as const;
+const KEYS={customer:"inrishi-v57-customer-session",admin:"inrishi-v57-admin-session"}as const;
 function currentRole():Role{if(typeof window==="undefined")return"public";const p=location.pathname;if(p.startsWith("/r/")||p.endsWith("/admin")||p.includes("/admin/"))return"admin";if(p.includes("/customer"))return"customer";return"public"}
 export function getSessionToken(r:Exclude<Role,"public">){return typeof window==="undefined"?"":sessionStorage.getItem(KEYS[r])||""}
 export function setSessionToken(r:Exclude<Role,"public">,t:string){if(typeof window!=="undefined"){clearSessionToken(r);sessionStorage.setItem(KEYS[r],t)}}
