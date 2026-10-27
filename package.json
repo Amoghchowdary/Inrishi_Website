@@ -1,7 +1,7 @@
 {
-  "name": "inrishi-website-v59-main-production",
+  "name": "inrishi-website-v60-main-production",
   "private": true,
-  "version": "59.0.0",
+  "version": "60.0.0",
   "type": "module",
   "scripts": {
     "check:config": "node scripts/check-config.mjs",
@@ -21,7 +21,7 @@
     "verify:dist": "node scripts/verify-dist.mjs",
     "verify:release": "node scripts/verify-release.mjs",
     "prepare:pages": "node scripts/prepare-pages.mjs",
-    "preflight": "npm run check:config && npm run verify:dependencies && npm run verify:css-deps && npm run verify:design && npm run verify:compile-guards && npm run verify:architecture && npm run verify:pages && npm run verify:navigation && npm run verify:route-recovery && npm run verify:backend-bridge && npm run verify:transport && npm run verify:runtime-exports && npm run verify:auth-contract && npm run verify:portal-workflows && npm run verify:action-contract && npm run verify:v59-regressions && npm run typecheck && npm run audit:all && npm run audit:prod && npm run verify && npm run verify:ui && npm run build && npm run verify:dist && npm run verify:artifact-v59 && npm run verify:release",
+    "preflight": "npm run check:config && npm run verify:dependencies && npm run verify:css-deps && npm run verify:design && npm run verify:compile-guards && npm run verify:architecture && npm run verify:pages && npm run verify:navigation && npm run verify:route-recovery && npm run verify:backend-bridge && npm run verify:transport && npm run verify:runtime-exports && npm run verify:auth-contract && npm run verify:portal-workflows && npm run verify:action-contract && npm run verify:v60-regressions && npm run typecheck && npm run audit:all && npm run audit:prod && npm run verify && npm run verify:ui && npm run build && npm run verify:dist && npm run verify:artifact-v60 && npm run verify:release",
     "verify:pages": "node scripts/verify-pages-deployment.mjs",
     "verify:navigation": "node scripts/verify-navigation.mjs",
     "verify:backend-bridge": "node scripts/verify-backend-bridge.mjs",
@@ -30,8 +30,8 @@
     "verify:portal-workflows": "node scripts/verify-portal-workflows.mjs",
     "verify:action-contract": "node scripts/verify-action-contract.mjs",
     "verify:backend-health": "node scripts/verify-backend-health.mjs",
-    "verify:v59-regressions": "node scripts/verify-v59-regressions.mjs",
-    "verify:artifact-v59": "node scripts/verify-production-artifact-v59.mjs"
+    "verify:v60-regressions": "node scripts/verify-v60-regressions.mjs",
+    "verify:artifact-v60": "node scripts/verify-production-artifact-v60.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "1.1.15",

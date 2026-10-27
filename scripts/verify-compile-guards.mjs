@@ -13,4 +13,4 @@ must(admin.includes("AdminWorkspace")&&admin.includes("Control center")&&admin.i
 
 if(admin.includes("{customerId,progressId,status,percent,detail}")) errors.push("Admin progress payload must omit optional detail when undefined under exactOptionalPropertyTypes.");
 if(!admin.includes("...(detail===undefined?{}:{detail})")) errors.push("Admin progress optional detail guard is missing.");
-if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V59 main compile regression guards passed.");
+if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V60 main compile regression guards passed.");

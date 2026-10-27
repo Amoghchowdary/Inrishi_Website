@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react
 import { Activity, Globe2, Handshake, Inbox, LayoutDashboard, LogOut, RefreshCw, ShieldCheck, UsersRound, Workflow } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import inrishiLogo from "@/assets/inrishi-public-logo.png";
-import { loginAdminFn, logoutAdminFn, type AdminSession } from "@/services/admin-auth";
+import { changeAdminPasswordFn, loginAdminFn, logoutAdminFn, type AdminSession } from "@/services/admin-auth";
 import {
   getAdminControlSnapshotFn,
   saveAdminWebsiteControlsFn,
@@ -52,12 +52,13 @@ export function AdminWorkspace({initial}:{initial:AdminSession|null}){
       const identifier=id.trim();
       const r=await loginAdminFn({data:{identifier,password}});
       if(!r.ok){setMessage(r.message||"Administrator sign in was not accepted.");return}
-      setSession(r.admin||{id:identifier,email:identifier});setPassword("");
+      setSession(r.admin||{id:identifier,email:identifier});setPassword("");if(r.mustChangePassword)setTab("security");
     }catch(c){setMessage(c instanceof Error?c.message:"Unable to reach the Inrishi authentication service.")}
     finally{setLoginLoading(false)}
   }
 
   async function logout(){await logoutAdminFn();setSession(null);setSnapshot(null)}
+  async function passwordChanged(){await logoutAdminFn();setSession(null);setSnapshot(null);setMessage("Password changed successfully. Sign in again with the new password.")}
   async function inquiryStatus(id:string,status:string){try{await updateWebsiteInquiryStatus(id,status);await refresh()}catch(e){setError(e instanceof Error?e.message:"Inquiry status could not be updated.")}}
   async function partnerStatus(partnerId:string,status:PartnerStatus){try{await updateAdminPartnerStatusFn({partnerId,status});await refresh()}catch(e){setError(e instanceof Error?e.message:"Partner status could not be updated.")}}
   async function customerStatus(customerId:string,status:"Active"|"Paused"){try{await updateAdminCustomerStatusFn({customerId,status});await refresh()}catch(e){setError(e instanceof Error?e.message:"Customer status could not be updated.")}}
@@ -81,7 +82,7 @@ export function AdminWorkspace({initial}:{initial:AdminSession|null}){
         {snapshot&&tab==="customers"&&<CustomersModule snapshot={snapshot} onStatus={customerStatus}/>} 
         {snapshot&&tab==="partners"&&<PartnersModule snapshot={snapshot} onStatus={partnerStatus}/>} 
         {snapshot&&tab==="projects"&&<ProjectsModule snapshot={snapshot} onSave={saveProgress}/>} 
-        {snapshot&&tab==="security"&&<SecurityModule snapshot={snapshot}/>} 
+        {snapshot&&tab==="security"&&<SecurityModule snapshot={snapshot} onPasswordChanged={passwordChanged}/>} 
       </main>
     </div>
   </div>;
@@ -125,7 +126,29 @@ function ProgressEditor({customerId,item,onSave}:{customerId:string;item:Progres
   return <div className="rounded-lg bg-slate-50 p-4"><div className="grid gap-3 xl:grid-cols-[1.1fr_190px_120px_auto]"><label className="form-label">Milestone<input className="form-input" value={detail} onChange={e=>setDetail(e.target.value)}/></label><label className="form-label">Status<select className="form-input" value={status} onChange={e=>setStatus(e.target.value as ProgressItem["status"])}><option>Not started</option><option>In progress</option><option>Review</option><option>Completed</option></select></label><label className="form-label">Progress %<input type="number" min={0} max={100} className="form-input" value={percent} onChange={e=>setPercent(Number(e.target.value))}/></label><Button className="self-end" disabled={saving} onClick={async()=>{setSaving(true);try{await onSave(customerId,item.id,status,percent,detail)}finally{setSaving(false)}}}>{saving?"Saving…":"Save"}</Button></div><strong className="mt-2 block text-sm">{item.label}</strong></div>;
 }
 
-function SecurityModule({snapshot}:{snapshot:AdminControlSnapshot}){return <div className="grid gap-5"><section className="workspace-panel p-6"><h2 className="font-display text-2xl font-semibold">Production security status</h2><div className="mt-5 grid gap-4 sm:grid-cols-3"><Info label="Backend version" value={snapshot.version}/><Info label="Admin accounts" value={String(snapshot.admins.length)}/><Info label="Database revision" value={String(snapshot.revision)}/></div><p className="mt-5 text-sm">Authentication, sessions, OTP verification, portal data writes and privileged operations are enforced by the deployed Apps Script backend. No database credentials or password material are stored in the frontend repository.</p></section><section className="workspace-panel p-6"><h2 className="font-display text-2xl font-semibold">Administrator accounts</h2><div className="mt-4 grid gap-3">{snapshot.admins.map(a=><div key={a.id} className="grid gap-2 rounded-lg bg-slate-50 p-4 md:grid-cols-4"><strong>{a.name}</strong><span>{a.email}</span><span>{a.role}</span><span>{a.status}</span></div>)}</div></section></div>}
+function SecurityModule({snapshot,onPasswordChanged}:{snapshot:AdminControlSnapshot;onPasswordChanged:()=>Promise<void>}){
+  const[currentPassword,setCurrentPassword]=useState("");
+  const[newPassword,setNewPassword]=useState("");
+  const[confirmPassword,setConfirmPassword]=useState("");
+  const[saving,setSaving]=useState(false);
+  const[message,setMessage]=useState("");
+  async function changePassword(e:FormEvent){
+    e.preventDefault();setMessage("");
+    if(newPassword!==confirmPassword){setMessage("New passwords do not match.");return}
+    setSaving(true);
+    try{
+      const r=await changeAdminPasswordFn({currentPassword,newPassword});
+      if(!r.ok){setMessage(r.message||"Password could not be changed.");return}
+      await onPasswordChanged();
+    }catch(error){setMessage(error instanceof Error?error.message:"Password could not be changed.")}
+    finally{setSaving(false)}
+  }
+  return <div className="grid gap-5">
+    <section className="workspace-panel p-6"><h2 className="font-display text-2xl font-semibold">Production security status</h2><div className="mt-5 grid gap-4 sm:grid-cols-3"><Info label="Backend version" value={snapshot.version}/><Info label="Admin accounts" value={String(snapshot.admins.length)}/><Info label="Database revision" value={String(snapshot.revision)}/></div><p className="mt-5 text-sm">Authentication, sessions, OTP verification, portal data writes and privileged operations are enforced by the deployed Apps Script backend. No database credentials or password material are stored in the frontend repository.</p></section>
+    <section className="workspace-panel p-6"><h2 className="font-display text-2xl font-semibold">Change administrator password</h2><p className="mt-2 text-sm">Changing the password revokes all current Admin sessions. You will sign in again with the new password.</p><form onSubmit={changePassword} className="mt-5 grid max-w-xl gap-4"><label className="form-label">Current password<input required type="password" autoComplete="current-password" className="form-input" value={currentPassword} onChange={e=>setCurrentPassword(e.target.value)}/></label><label className="form-label">New password<input required minLength={10} type="password" autoComplete="new-password" className="form-input" value={newPassword} onChange={e=>setNewPassword(e.target.value)}/></label><label className="form-label">Confirm new password<input required minLength={10} type="password" autoComplete="new-password" className="form-input" value={confirmPassword} onChange={e=>setConfirmPassword(e.target.value)}/></label>{message&&<p role="alert" className="text-sm font-semibold text-red-700">{message}</p>}<Button type="submit" disabled={saving}>{saving?"Changing…":"Change password"}</Button></form></section>
+    <section className="workspace-panel p-6"><h2 className="font-display text-2xl font-semibold">Administrator accounts</h2><div className="mt-4 grid gap-3">{snapshot.admins.map(a=><div key={a.id} className="grid gap-2 rounded-lg bg-slate-50 p-4 md:grid-cols-4"><strong>{a.name}</strong><span>{a.email}</span><span>{a.role}</span><span>{a.status}</span></div>)}</div></section>
+  </div>
+}
 
 function Metric({label,value}:{label:string;value:number}){return <div className="workspace-panel p-5"><p className="text-sm">{label}</p><strong className="mt-2 block text-3xl">{value}</strong></div>}
 function Info({label,value}:{label:string;value:string}){return <div className="rounded-lg bg-slate-50 p-4"><p className="text-xs uppercase">{label}</p><strong className="mt-1 block">{value}</strong></div>}

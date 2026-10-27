@@ -1,0 +1,20 @@
+INRISHI MAIN V60 EXIT CONTROL
+=============================
+PASS: runtime/config contract
+PASS: dependency policy
+PASS: approved design lock
+PASS: compile guards
+PASS: Main/Admin/Customer vs Partner architecture separation
+PASS: GitHub Pages custom-domain/project-path routing
+PASS: navigation + SPA recovery
+PASS: Apps Script form-POST transport + dynamic Google sandbox origin trust
+PASS: runtime-config exports
+PASS: Admin login/change-password contract
+PASS: Customer Gmail registration + OTP recovery contract
+PASS: portal workflows
+PASS: 31 frontend actions covered by 50-action backend contract
+PASS: V50-V59 historical regression gate
+PASS: strict internal TypeScript semantic validation
+PASS: production repository boundary
+PASS: approved UI gate
+FINAL THIRD-PARTY INSTALL + REAL VITE BUILD: GitHub Actions production gate

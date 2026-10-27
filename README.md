@@ -1,10 +1,11 @@
-# INRISHI Main Production — V59
+# INRISHI Main Production — V60
 
 Production frontend for `https://www.inrishi.in`.
 
 - GitHub repository: `Amoghchowdary/Inrishi_Website`
-- Apps Script backend: `https://script.google.com/macros/s/AKfycbzQ1YMIghWp_p3hy3NxsJraffY_AjLA77JlyfYF7YvkGlylLnV2MiDgJViLjByn9ntq/exec`
 - Main routes: `/`, `/contact`, `/sample-work`, `/customer-login`, `/customer-portal`, `/admin`
-- Partner functionality is not bundled here; all Partner links point to `https://partner.inrishi.in`.
-- Backend source, database IDs, Drive IDs, password material and Apps Script files are intentionally excluded from this repository.
-- GitHub Actions runs the production audit, TypeScript, source boundary, Vite build, built CSS/config verification and Pages deployment.
+- Partner site: `https://partner.inrishi.in` (separate frontend repository)
+- Backend: separate Google Apps Script Web App; no `.gs` backend source belongs in this repository.
+- Customer identity: customer's own registered Gmail + generated Customer ID; OTP-first registration/recovery.
+- Admin: authenticated Control Center with password change and centralized Customer/Partner/project management.
+- GitHub Actions performs backend-version check, strict TypeScript, dependency audits, production build, dist verification, Pages deployment and post-deploy smoke test.

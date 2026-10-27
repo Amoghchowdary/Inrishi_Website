@@ -1,5 +1,16 @@
-# INRISHI Main V59 Production Release
+# INRISHI Main V60 Production Release
 
-V59 fixes GitHub Pages blank-screen deployment by using relative Vite assets, dynamic TanStack Router basepath detection, repository-aware SPA 404 recovery, and deployment-safe internal links. The same build supports `https://amoghchowdary.github.io/Inrishi_Website/` and the production custom-domain root `https://www.inrishi.in/`.
+V60 is a functionality-stabilization release. The approved public design is unchanged.
 
-Design and backend behavior remain unchanged from the approved release.
+Production corrections:
+- stable Apps Script Web App POST transport restored;
+- Admin sign-in transport repaired;
+- Admin Security includes authenticated password change;
+- customers register with their own Gmail after OTP verification;
+- Forgot Customer ID and Forgot Password are OTP-first;
+- Customer Settings includes password change;
+- customers converted from Partner leads must provide their own valid Gmail;
+- no customer pseudo-email/inbox is issued by INRISHI;
+- GitHub Pages path/recovery and V50-V59 regression controls remain locked.
+
+GitHub Actions is the only production build/deployment acceptance environment.

@@ -32,7 +32,7 @@ jobs:
         run: |
           echo "Custom domain: https://www.inrishi.in/"
           echo "GitHub project path: https://${{ github.repository_owner }}.github.io/Inrishi_Website/"
-      - name: Verify deployed Apps Script V59 backend
+      - name: Verify deployed Apps Script V60 backend
         run: node scripts/verify-backend-health.mjs
       - name: Install exact declared production/build dependencies
         run: npm install --include=dev --no-audit --no-fund --strict-peer-deps

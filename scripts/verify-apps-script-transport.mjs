@@ -1,1 +1,19 @@
-import fs from "node:fs";const source=fs.readFileSync("src/lib/apps-script-api.ts","utf8");const errors=[];for(const token of ["ensureRpcBridge","mode\",\"rpc-bridge","INRISHI_APPS_SCRIPT_BRIDGE","INRISHI_FRONTEND","event.source!==iframe.contentWindow","BACKEND_BRIDGE_TIMEOUT","BACKEND_RESPONSE_TIMEOUT","pageUrl:location.href","host.endsWith(\"-script.googleusercontent.com\")"]){if(!source.includes(token))errors.push(`Missing V59 RPC bridge requirement: ${token}`)}if(source.includes("form.submit()")||source.includes('form.method="POST"'))errors.push("Legacy per-request hidden-form transport must not remain in V59.");if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V59 Apps Script transport verified: persistent google.script.run RPC bridge and dynamic Google sandbox origin trust are locked.");
+import fs from "node:fs";
+const source=fs.readFileSync("src/lib/apps-script-api.ts","utf8");
+const errors=[];
+for(const token of [
+  'form.method="POST"',
+  'form.submit()',
+  'form.target=iframeName',
+  'pageUrl:location.href',
+  'origin:location.origin',
+  'host.endsWith("-script.googleusercontent.com")',
+  'BACKEND_RESPONSE_TIMEOUT'
+]){
+  if(!source.includes(token))errors.push(`Missing V60 form-post transport requirement: ${token}`);
+}
+for(const forbidden of ["ensureRpcBridge","INRISHI_APPS_SCRIPT_BRIDGE","google.script.run"]){
+  if(source.includes(forbidden))errors.push(`Broken persistent RPC bridge must not remain in V60 frontend: ${forbidden}`);
+}
+if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}
+console.log("V60 Apps Script transport verified: per-request POST/HtmlService response channel with dynamic Google sandbox origin trust.");

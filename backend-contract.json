@@ -1,6 +1,6 @@
 {
-  "version": "59.0.0",
-  "transport": "apps-script-rpc-bridge",
+  "version": "60.0.0",
+  "transport": "apps-script-form-post",
   "actions": [
     "admin.accounts.create",
     "admin.accounts.issueTemporaryPassword",
@@ -18,7 +18,14 @@
     "auth.admin.requestReset",
     "auth.admin.resetPassword",
     "auth.admin.session",
+    "auth.customer.changePassword",
     "auth.customer.login",
+    "auth.customer.recovery.complete",
+    "auth.customer.recovery.request",
+    "auth.customer.recovery.verify",
+    "auth.customer.registration.complete",
+    "auth.customer.registration.request",
+    "auth.customer.registration.verify",
     "auth.customer.session",
     "auth.logout",
     "auth.partner.begin",
