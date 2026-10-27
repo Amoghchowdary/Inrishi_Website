@@ -1,0 +1,19 @@
+INRISHI V55 PRODUCTION EXIT CONTROL
+===================================
+
+FIXED PRODUCTION FAILURES
+- Partner Portal links no longer escape from /Inrishi_Partner/ to amoghchowdary.github.io/portal.
+- Partner Login/Register/Portal UI components are no longer legacy route files.
+- Main Customer portal navigation remains repository-base aware.
+- GitHub Pages direct-route recovery is branded and repository aware.
+- Backend accepts custom domains and GitHub project previews using origin + pageUrl + SITE_ID.
+- Apps Script bridge posts to both parent and top window to survive Google wrapper nesting.
+- Main/Partner frontend role boundaries remain separated.
+- GitHub Actions upgraded to current Node-24 action majors and ubuntu-24.04.
+
+PRESERVED
+- Approved cosmic visual design.
+- Main website content and V46/V54 design lock.
+- Separate Main and Partner repositories.
+- Shared Apps Script database/backend architecture.
+- Existing Apps Script /exec URL.

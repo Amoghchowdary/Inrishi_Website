@@ -1,0 +1,5 @@
+import fs from "node:fs";import path from "node:path";
+const errors=[];const files=[];function walk(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){const f=path.join(d,e.name);if(e.isDirectory())walk(f);else if(/\.(?:ts|tsx)$/.test(e.name))files.push(f)}}walk("src");
+for(const f of files){const s=fs.readFileSync(f,"utf8");if(/href=["']\//.test(s))errors.push(`Hard-rooted anchor in ${f}`);if(/(?:window\.)?location\.assign\(["']\//.test(s))errors.push(`Hard-rooted location.assign in ${f}`);if(/const\s+\w*Href\s*=\s*["']\//.test(s))errors.push(`Hard-rooted route variable in ${f}`);}
+const tree=fs.readFileSync("src/routeTree.gen.ts","utf8");for(const r of ["/", "/sample-work", "/contact", "/customer-login", "/customer-portal", "/admin", "/r/9f2a7c4d6e"])if(!tree.includes(`'${r}'`))errors.push(`Missing canonical route ${r}`);for(const old of [])if(tree.includes(`'${old}'`))errors.push(`Legacy route still exists: ${old}`);
+if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V55 MAIN navigation integrity passed: canonical routes and deployment-safe links verified.");

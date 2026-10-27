@@ -1,7 +1,7 @@
 {
-  "name": "inrishi-website-v54-main-production",
+  "name": "inrishi-website-v55-main-production",
   "private": true,
-  "version": "54.0.0",
+  "version": "55.0.0",
   "type": "module",
   "scripts": {
     "check:config": "node scripts/check-config.mjs",
@@ -21,8 +21,11 @@
     "verify:dist": "node scripts/verify-dist.mjs",
     "verify:release": "node scripts/verify-release.mjs",
     "prepare:pages": "node scripts/prepare-pages.mjs",
-    "preflight": "npm run check:config && npm run verify:dependencies && npm run verify:css-deps && npm run verify:design && npm run verify:compile-guards && npm run verify:architecture && npm run verify:pages && npm run verify:runtime-exports && npm run verify:auth-contract && npm run audit:all && npm run audit:prod && npm run typecheck && npm run verify && npm run verify:ui && npm run build && npm run verify:dist && npm run verify:release",
-    "verify:pages": "node scripts/verify-pages-deployment.mjs"
+    "preflight": "npm run check:config && npm run verify:dependencies && npm run verify:css-deps && npm run verify:design && npm run verify:compile-guards && npm run verify:architecture && npm run verify:pages && npm run verify:navigation && npm run verify:route-recovery && npm run verify:backend-bridge && npm run verify:runtime-exports && npm run verify:auth-contract && npm run audit:all && npm run audit:prod && npm run typecheck && npm run verify && npm run verify:ui && npm run build && npm run verify:dist && npm run verify:release",
+    "verify:pages": "node scripts/verify-pages-deployment.mjs",
+    "verify:navigation": "node scripts/verify-navigation.mjs",
+    "verify:backend-bridge": "node scripts/verify-backend-bridge.mjs",
+    "verify:route-recovery": "node scripts/verify-route-recovery.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "1.1.15",
