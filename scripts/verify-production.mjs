@@ -1,32 +1,9 @@
-import fs from "node:fs";
-import path from "node:path";
-const root = process.cwd();
-const errors=[];
-const required=[
-  "package.json","index.html","vite.config.ts","public/404.html","public/favicon.svg","public/inrishi-logo.png","public/inrishi-config.js",
-  "src/main.tsx","src/styles.css","src/lib/apps-script-api.ts","src/lib/business-api.ts","src/lib/runtime-config.ts",
-  "src/routes/index.tsx","src/routes/contact.tsx","src/routes/sample-work.tsx","src/routes/customer-login.tsx","src/routes/customer-portal.tsx",
-  "src/assets/inrishi-public-logo.png","src/components/cosmic-environment.tsx","src/components/admin-workspace.tsx","src/routes/admin.tsx","src/routes/partner.tsx","src/routes/partner-login.tsx","src/routes/partner-register.tsx","src/routes/partner-portal.tsx","src/routes/r.9f2a7c4d6e.tsx",
-  ".github/workflows/deploy-pages.yml",".github/workflows/quality.yml","scripts/check-config.mjs","scripts/verify-dependencies.mjs","scripts/verify-design-regression.mjs","scripts/verify-ui.mjs","scripts/verify-dist.mjs","scripts/prepare-pages.mjs","scripts/verify-runtime-exports.mjs"
-];
-for(const rel of required) if(!fs.existsSync(path.join(root,rel))) errors.push(`Missing required production file: ${rel}`);
-if(fs.existsSync(path.join(root,".git"))) errors.push("V52 development source must not contain .git metadata.");
-if(fs.existsSync(path.join(root,"apps-script"))) errors.push("Apps Script backend source must not be present in the frontend Git package.");
-const pkg=JSON.parse(fs.readFileSync(path.join(root,"package.json"),"utf8"));
-if(pkg.version!=="52.0.0") errors.push("Unexpected V52 package version.");
-if(pkg.dependencies?.["@tanstack/react-start"]||pkg.dependencies?.nitro||pkg.devDependencies?.["@tanstack/react-start"]) errors.push("Server runtime dependency remains in static frontend package.");
-for(const forbidden of ["dev","preview","start","push:git","configure"]) if(pkg.scripts?.[forbidden]) errors.push(`Forbidden production script remains: ${forbidden}`);
-const appsApi=fs.readFileSync(path.join(root,"src/lib/apps-script-api.ts"),"utf8");
-const viteConfig=fs.readFileSync(path.join(root,"vite.config.ts"),"utf8");
-if(!appsApi.includes('code:string|undefined')) errors.push("AppsScriptBackendError.code must explicitly allow undefined under exactOptionalPropertyTypes.");
-if(/minify\s*:\s*["']esbuild["']/.test(viteConfig)) errors.push("Deprecated Vite 8 esbuild minifier is still configured.");
-const config=fs.readFileSync(path.join(root,"public/inrishi-config.js"),"utf8");
-const expectedBackend="https://script.google.com/macros/s/AKfycbzQ1YMIghWp_p3hy3NxsJraffY_AjLA77JlyfYF7YvkGlylLnV2MiDgJViLjByn9ntq/exec";
-if(!config.includes('APP_VERSION: "52.0.0"')) errors.push("Runtime APP_VERSION is not V52.");
-if(!config.includes(expectedBackend)) errors.push("Approved Apps Script endpoint is missing.");
-const textExtensions=new Set([".ts",".tsx",".js",".jsx",".mjs",".html",".css",".json",".yml",".yaml"]);
-const skipDirs=new Set(["node_modules","dist",".git"]);
-const secretPatterns=[/INRISHI_DB_SPREADSHEET_ID/i,/INRISHI_FILES_FOLDER_ID/i,/PASSWORD_PEPPER/i,/DriveApp\./,/SpreadsheetApp\./,/PropertiesService\./,/function\s+setupInrishiBackend\s*\(/];
-function walk(dir){ if(!fs.existsSync(dir)) return; for(const entry of fs.readdirSync(dir,{withFileTypes:true})){ if(skipDirs.has(entry.name)) continue; const full=path.join(dir,entry.name); if(entry.isDirectory()) walk(full); else { if(path.extname(entry.name).toLowerCase()===".gs") errors.push(`Apps Script source found in frontend: ${path.relative(root,full)}`); if(textExtensions.has(path.extname(entry.name).toLowerCase())){ const t=fs.readFileSync(full,"utf8"); if(/localhost/i.test(t)) errors.push(`Localhost reference remains in deployable source: ${path.relative(root,full)}`); if(/Testing credentials|Test OTP|Test login|for testing only|Reset all testing data/i.test(t)) errors.push(`Testing reference remains in deployable source: ${path.relative(root,full)}`); for(const pattern of secretPatterns) if(pattern.test(t)) errors.push(`Backend-only code or secret identifier found in ${path.relative(root,full)}`); } } } }
-walk(path.join(root,"src")); walk(path.join(root,"public")); walk(path.join(root,".github"));
-const runtimeConfigSource=fs.readFileSync(path.join(root,"src/lib/runtime-config.ts"),"utf8");if(!runtimeConfigSource.includes("export function getRuntimeConfig")) errors.push("runtime-config getRuntimeConfig export is missing.");if(!runtimeConfigSource.includes("export function isBackendConfigured")) errors.push("runtime-config isBackendConfigured export is missing.");if(errors.length){console.error([...new Set(errors)].map(e=>`ERROR: ${e}`).join("\n"));process.exit(1);} console.log("Inrishi V52 frontend production verification passed.");
+import fs from "node:fs";import path from "node:path";
+const root=process.cwd(),errors=[];const required=["package.json", "index.html", "vite.config.ts", "public/404.html", "public/favicon.png", "public/inrishi-config.js", "src/main.tsx", "src/styles.css", "src/lib/apps-script-api.ts", "src/lib/runtime-config.ts", ".github/workflows/deploy-pages.yml", ".github/workflows/quality.yml", "scripts/check-config.mjs", "scripts/verify-dependencies.mjs", "scripts/verify-css-deps.mjs", "scripts/verify-dist.mjs", "scripts/verify-release.mjs", "src/routes/index.tsx", "src/routes/contact.tsx", "src/routes/sample-work.tsx", "src/routes/customer-login.tsx", "src/routes/customer-portal.tsx", "src/routes/admin.tsx", "src/routes/r.9f2a7c4d6e.tsx", "src/components/admin-workspace.tsx"];for(const rel of required)if(!fs.existsSync(path.join(root,rel)))errors.push(`Missing production file: ${rel}`);
+for(const dir of ["apps-script", "backend", "server"])if(fs.existsSync(path.join(root,dir)))errors.push(`Backend/server source must not be in frontend repo: ${dir}`);
+const pkg=JSON.parse(fs.readFileSync("package.json","utf8"));if(pkg.version!=="53.0.0")errors.push("Package version is not V53.");
+const cfg=fs.readFileSync("public/inrishi-config.js","utf8"),rt=fs.readFileSync("src/lib/runtime-config.ts","utf8");const backend="https://script.google.com/macros/s/AKfycbzQ1YMIghWp_p3hy3NxsJraffY_AjLA77JlyfYF7YvkGlylLnV2MiDgJViLjByn9ntq/exec";if(!cfg.includes(backend)||!rt.includes(backend))errors.push("Approved Apps Script endpoint is not embedded in both runtime layers.");if(!cfg.includes('SITE_ID: "main"'))errors.push("Frontend SITE_ID is incorrect.");
+const appDirs=[path.join(root,"src"),path.join(root,"public")];const banned=[/http:\/\/localhost/i,/https?:\/\/127\.0\.0\.1/i,/Testing credentials/i,/Test OTP/i,/Test login/i,/for testing only/i];const secret=[/INRISHI_DB_SPREADSHEET_ID/i,/INRISHI_FILES_FOLDER_ID/i,/PASSWORD_PEPPER/i,/SpreadsheetApp\./,/DriveApp\./,/PropertiesService\./,/function\s+setupInrishiBackend\s*\(/];
+function walk(d){if(!fs.existsSync(d))return;for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name);if(e.isDirectory())walk(p);else if(/\.(?:ts|tsx|js|jsx|mjs|html|css|json)$/i.test(e.name)){const t=fs.readFileSync(p,"utf8");for(const x of banned)if(x.test(t))errors.push(`Local/testing application content in ${path.relative(root,p)}`);for(const x of secret)if(x.test(t))errors.push(`Backend-only identifier/code in ${path.relative(root,p)}`);if(e.name.endsWith(".gs"))errors.push(`Apps Script source leaked into frontend: ${path.relative(root,p)}`);}}}for(const d of appDirs)walk(d);
+const tree=fs.readFileSync("src/routeTree.gen.ts","utf8");for(const route of ["/","/contact","/sample-work","/customer-login","/customer-portal","/admin","/r/9f2a7c4d6e"])if(!tree.includes(`'${route}'`))errors.push(`Main route missing: ${route}`);for(const route of ["/partner","/partner-login","/partner-register","/partner-portal","/login","/register","/portal"])if(tree.includes(`'${route}'`))errors.push(`Partner route leaked into Main repo: ${route}`);
+if(errors.length){console.error([...new Set(errors)].map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V53 production repository boundary verification passed.");

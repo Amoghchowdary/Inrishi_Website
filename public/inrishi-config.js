@@ -1,6 +1,7 @@
 window.INRISHI_CONFIG = Object.freeze({
-  APP_VERSION: "52.0.0",
+  APP_VERSION: "53.0.0",
   ENVIRONMENT: "production",
+  SITE_ID: "main",
   APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbzQ1YMIghWp_p3hy3NxsJraffY_AjLA77JlyfYF7YvkGlylLnV2MiDgJViLjByn9ntq/exec",
   MAIN_ORIGIN: "https://www.inrishi.in",
   PARTNER_ORIGIN: "https://partner.inrishi.in",

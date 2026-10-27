@@ -1,4 +1,4 @@
-name: Deploy Inrishi Production Site to GitHub Pages
+name: Deploy INRISHI Main Production
 
 on:
   push:
@@ -11,38 +11,29 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.repository }}
   cancel-in-progress: true
 
 env:
-  SITE_DOMAIN: ${{ vars.SITE_DOMAIN || 'www.inrishi.in' }}
+  SITE_DOMAIN: www.inrishi.in
 
 jobs:
-  build:
+  production:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout production source
         uses: actions/checkout@v4
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Validate dependency manifest
-        run: node scripts/verify-dependencies.mjs
-      - name: Validate CSS package imports
-        run: node scripts/verify-css-deps.mjs
-      - name: Install dependencies
+      - name: Install exact declared production/build dependencies
         run: npm install --include=dev --no-audit --no-fund --strict-peer-deps
-      - name: Confirm dependency tree
+      - name: Dependency tree
         run: npm ls --depth=0
-      - name: Validate deployment variables
-        shell: bash
-        run: |
-          test -n "$SITE_DOMAIN" || (echo "SITE_DOMAIN is missing" && exit 1)
-          echo "Deploying custom domain: $SITE_DOMAIN"
       - name: Production acceptance checks
         run: npm run preflight
-      - name: Prepare custom-domain Pages output
+      - name: Prepare GitHub Pages artifact
         run: npm run prepare:pages -- "$SITE_DOMAIN"
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -50,13 +41,12 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
-
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
+    needs: production
     steps:
       - name: Deploy GitHub Pages
         id: deployment

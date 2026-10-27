@@ -1,0 +1,14 @@
+MAIN PRODUCTION DEPLOYMENT
+Repository clone: C:\Users\MYPC\Desktop\InRishi\Deployment\Inrishi_Website
+Source folder: C:\Users\MYPC\Desktop\InRishi\INRISHI_WEBSITE_V53_MAIN
+
+robocopy `
+"C:\Users\MYPC\Desktop\InRishi\INRISHI_WEBSITE_V53_MAIN" `
+"C:\Users\MYPC\Desktop\InRishi\Deployment\Inrishi_Website" `
+/MIR /XD ".git" "node_modules" "dist" ".vite" /XF ".env" ".env.local" "*.log"
+
+cd "C:\Users\MYPC\Desktop\InRishi\Deployment\Inrishi_Website"
+git status
+git add -A
+git commit -m "Deploy INRISHI Main V53 production"
+git push origin main

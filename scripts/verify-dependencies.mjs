@@ -9,8 +9,8 @@ const tailwindVite=pkg.devDependencies?.["@tailwindcss/vite"]??"";
 const tailwind=pkg.devDependencies?.tailwindcss??"";
 const twAnimate=pkg.devDependencies?.["tw-animate-css"]??"";
 const reactPlugin=pkg.devDependencies?.["@vitejs/plugin-react"]??"";
-if(pkg.name!=="inrishi-website-v52-main-production")errors.push("Unexpected package name.");
-if(pkg.version!=="52.0.0")errors.push("V52 package version must be 52.0.0.");
+if(pkg.name!=="inrishi-website-v53-main-production")errors.push("Unexpected package name.");
+if(pkg.version!=="53.0.0")errors.push("V53 package version must be 53.0.0.");
 if(JSON.stringify(actualRuntime)!==JSON.stringify(runtimeAllow))errors.push(`Runtime dependency allowlist mismatch: ${actualRuntime.join(", ")}`);
 if(vite!=="8.3.5")errors.push("Vite must be pinned to security-patched 8.3.5.");
 if(tailwindVite!=="4.3.3"||tailwind!=="4.3.3")errors.push("Tailwind Vite and Tailwind CSS must be pinned to 4.3.3 as build-only dependencies.");
@@ -23,4 +23,4 @@ const viteConfig=fs.readFileSync("vite.config.ts","utf8");
 if(/minify\s*:\s*["']esbuild["']/.test(viteConfig))errors.push("Deprecated esbuild minification must not return.");
 if(!/minify\s*:\s*["']oxc["']/.test(viteConfig))errors.push("Vite production minifier must remain Oxc.");
 if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1);}
-console.log(`V52 dependency policy verified: Vite ${vite}; Tailwind ${tailwind}; tw-animate-css ${twAnimate}; ${actualRuntime.length} runtime packages.`);
+console.log(`V53 dependency policy verified: Vite ${vite}; Tailwind ${tailwind}; tw-animate-css ${twAnimate}; ${actualRuntime.length} runtime packages.`);

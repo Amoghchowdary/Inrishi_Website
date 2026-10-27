@@ -14,10 +14,10 @@ if(!admin.includes('Boolean(raw.token)')) errors.push("Admin login must normaliz
 if(!workspace.includes('disabled={loading}')||!workspace.includes('Signing in…')) errors.push("Admin login loading state is missing.");
 if(!workspace.includes('Administrator ID or email')) errors.push("Admin identifier field must accept ID or email.");
 if(!workspace.includes('inrishi-public-logo.png')) errors.push("Admin must use the approved INRISHI public logo asset.");
-if(!workspace.includes('admin-brand-logo')) errors.push("Admin logo must use the scoped V52 logo class.");
+if(!workspace.includes('admin-brand-logo')) errors.push("Admin logo must use the scoped V53 logo class.");
 if(!css.includes('.admin-brand-logo{')) errors.push("Admin logo CSS is missing.");
 if(css.includes('.admin-brand-logo{background:#fff')) errors.push("Admin logo must not force a white background.");
 const backend="https://script.google.com/macros/s/AKfycbzQ1YMIghWp_p3hy3NxsJraffY_AjLA77JlyfYF7YvkGlylLnV2MiDgJViLjByn9ntq/exec";
 if(!runtime.includes(backend)||!publicConfig.includes(backend)) errors.push("Approved Apps Script backend must remain embedded in both runtime layers.");
-if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}
-console.log("V52 main auth contract passed: admin identifier compatibility, token session, loading state, approved logo and backend lock verified.");
+const apiSource=fs.readFileSync("src/lib/apps-script-api.ts","utf8");if(!apiSource.includes("site:config.SITE_ID")) errors.push("Apps Script request must carry production site identity.");if(!apiSource.includes("origin:location.origin")) errors.push("Apps Script request must carry browser origin.");if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}
+console.log("V53 main auth contract passed: admin identifier compatibility, token session, loading state, approved logo and backend lock verified.");

@@ -2,7 +2,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HeadContent, Link, Outlet, createRootRouteWithContext, useRouter, useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { CosmicEnvironment } from "@/components/cosmic-environment";
-import { isPartnerHostname } from "@/lib/partner-host";
 
 function NotFoundComponent() {
   return (
@@ -45,13 +44,7 @@ function RootComponent() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
 
   useEffect(() => {
-    const partner = isPartnerHostname(window.location.hostname);
-    document.documentElement.dataset["inrishiSite"] = partner ? "partner" : "main";
-    if (partner && pathname === "/") {
-      document.title = "Become an Inrishi Partner | Inrishi";
-      const description = document.querySelector('meta[name="description"]');
-      if (description) description.setAttribute("content", "Become an Inrishi Partner, bring customers to Inrishi, track projects and earn incentives through a structured partner programme.");
-    }
+    document.documentElement.dataset["inrishiSite"] = "main";
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
     if (!canonical) { canonical = document.createElement("link"); canonical.rel = "canonical"; document.head.appendChild(canonical); }
     canonical.href = `${window.location.origin}${pathname === "/" ? "/" : pathname}`;
@@ -61,13 +54,7 @@ function RootComponent() {
     pathname === "/customer-login" ||
     pathname === "/customer-portal" ||
     pathname === "/admin" ||
-    pathname.startsWith("/r/9f2a7c4d6e") ||
-    pathname === "/partner-login" ||
-    pathname === "/partner-register" ||
-    pathname === "/partner-portal" ||
-    pathname === "/login" ||
-    pathname === "/register" ||
-    pathname === "/portal";
+    pathname.startsWith("/r/9f2a7c4d6e");
 
   return (
     <QueryClientProvider client={queryClient}>
