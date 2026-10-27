@@ -1,7 +1,2 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
-
-export const Route = createFileRoute("/admin")({
-  head: () => ({ meta: [{ title: "Inrishi" }, { name: "robots", content: "noindex, nofollow, noarchive" }] }),
-  loader: () => { throw redirect({ to: "/" }); },
-  component: () => null,
-});
+export const Route=createFileRoute("/admin")({loader:()=>{throw redirect({to:"/r/9f2a7c4d6e"})}});

@@ -1,6 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
-// Generated route tree for Inrishi V28 hostname-based partner subdomain.
+// Generated route tree for Inrishi V46 production routes.
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ContactRouteImport } from './routes/contact'

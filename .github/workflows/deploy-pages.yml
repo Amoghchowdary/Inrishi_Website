@@ -14,6 +14,9 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+env:
+  SITE_DOMAIN: ${{ vars.SITE_DOMAIN || 'www.inrishi.in' }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,18 +27,23 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Validate dependency manifest
+        run: node scripts/verify-dependencies.mjs
       - name: Install dependencies
-        run: npm install --include=dev --no-audit --no-fund
+        run: npm install --include=dev --no-audit --no-fund --strict-peer-deps
+      - name: Confirm dependency tree
+        run: npm ls --depth=0
       - name: Validate deployment variables
         shell: bash
         run: |
-          test -n "${{ vars.SITE_DOMAIN }}" || (echo "Repository variable SITE_DOMAIN is missing" && exit 1)
+          test -n "$SITE_DOMAIN" || (echo "SITE_DOMAIN is missing" && exit 1)
+          echo "Deploying custom domain: $SITE_DOMAIN"
       - name: Audit production dependencies
         run: npm run audit:prod
       - name: Production acceptance checks
         run: npm run preflight
       - name: Prepare custom-domain Pages output
-        run: npm run prepare:pages -- "${{ vars.SITE_DOMAIN }}"
+        run: npm run prepare:pages -- "$SITE_DOMAIN"
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact

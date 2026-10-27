@@ -1,0 +1,24 @@
+INRISHI WEBSITE V46 — EXIT CONTROL REPORT
+==========================================
+
+VERSION
+- 46.0.0
+
+APPROVED CHANGES
+- Public/top-left logo replaced with the exact user-uploaded Neon Puppet Robot INRISHI logo.
+- Favicon regenerated from the same approved logo.
+- V38-style service/content tiles are transparent at rest.
+- On mouse hover, V38-style tiles become white.
+- Hover state switches headings/body/icons to dark/green/cyan contrast for readability.
+
+PRESERVED
+- V45 refined robot/INRISHI hero.
+- V38 cosmic galaxy/planet/asteroid background.
+- V45 larger service/body typography.
+- Exact tagline: Intelligence inside.
+- Existing production Apps Script endpoint and portal routes.
+- Vite/Tailwind/Oxc build fixes and compile guards.
+
+DEPLOYMENT RULE
+- This version folder has no .git metadata.
+- Robocopy it into the permanent deployment repository only after local preflight passes.

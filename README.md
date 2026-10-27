@@ -1,48 +1,38 @@
-# Inrishi V39 — GitHub Production Frontend
+# INRISHI Website V46
 
-This is the production frontend for the Inrishi platform.
+Production frontend source for INRISHI Private Limited.
 
-It is designed to be published only through GitHub Actions and GitHub Pages.
-It contains no Google Apps Script backend source, no Google Sheet ID, no Drive folder ID, no password hashes, and no customer or partner database records.
+- Website version: `46.0.0`
+- Homepage visual authority: preserved V38 design
+- Tagline: `Intelligence inside.`
+- Production backend: unchanged Google Apps Script Web App
 
-## Production domains
+## V46 design restoration
 
-- Main website: `https://www.inrishi.in`
-- Customer access: `https://www.inrishi.in/customer-login`
-- Partner website: `https://partner.inrishi.in`
-- Partner access: `https://partner.inrishi.in/login`
+V46 restores the approved cosmic homepage direction after the V41 visual regression:
 
-The Apps Script Web App endpoint is already embedded in `public/inrishi-config.js`.
+- full-bleed galaxy / planet / asteroid / meteor environment;
+- centered INRISHI hero composition over the cosmic background;
+- the uploaded INRISHI logo is used as the public header, hero and footer brand asset;
+- `Solutions`, `Sample Work`, `Our approach`, `Contact` navigation rhythm is restored;
+- hero copy is restored to `Connecting people, processes and data with software that thinks ahead.`;
+- `Explore solutions`, `Start a conversation` and `EXPLORE OUR UNIVERSE` are restored;
+- the V41 horizontal service-chip strip is removed from the hero;
+- white customer-facing title cards remain below the hero where previously approved.
 
-## Recommended repository layout
+## Exit-control gate
 
-Use two GitHub repositories with the same V39 source:
+`npm run verify:design` locks the approved V46 homepage composition and the uploaded logo bytes. It is included in `npm run preflight` so a future design regression fails before deployment.
 
-1. Main website repository — repository variable `SITE_DOMAIN=www.inrishi.in`
-2. Partner website repository — repository variable `SITE_DOMAIN=partner.inrishi.in`
+## Build corrections retained from V41
 
-The included GitHub Actions workflow builds the source, runs the production acceptance checks, prepares the correct domain-specific sitemap/metadata, and deploys `dist/` to GitHub Pages.
+- Vite `8.1.5` with `@tailwindcss/vite` / `tailwindcss` `4.3.3`;
+- Vite 8 native Oxc minification;
+- strict TypeScript optional-property correction;
+- Partner Login and Partner Registration `Button` imports;
+- Node `22.12+` support without the obsolete `<25` ceiling.
 
-## Push source
 
-```text
-npm run push:git -- "https://github.com/YOUR_GITHUB_USERNAME/inrishi-main-site.git" main "Deploy Inrishi main production"
-```
+## V46 approved delta
 
-For the partner repository, use a second clean copy of this folder and run:
-
-```text
-npm run push:git -- "https://github.com/YOUR_GITHUB_USERNAME/inrishi-partner-site.git" main "Deploy Inrishi partner production"
-```
-
-No local deployment is required. GitHub Actions is the production build and deployment gate.
-
-## Production documentation
-
-- `PRODUCTION_CUTOVER.md`
-- `GITHUB_ACTIONS_DEPLOYMENT.md`
-- `HOSTINGER_DNS.md`
-- `GIT_PUSH.md`
-- `SECURITY_INTEGRATION.md`
-- `DEPLOYMENT_CHECKLIST.md`
-- `VERIFICATION_REPORT.md`
+V46 preserves the V38/V44 cosmic layout and production functionality. The only visual changes are a refined robot/INRISHI hero holding composition and larger customer-facing service/body typography for readability.
