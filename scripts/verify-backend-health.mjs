@@ -7,7 +7,7 @@ try{
   let data;try{data=JSON.parse(text)}catch{throw new Error(`Backend health was not JSON: ${text.slice(0,120)}`)}
   if(data.status!=="online")throw new Error(`Backend status is ${data.status??"missing"}`);
   if(data.configured!==true)throw new Error("Backend database is not configured.");
-  if(data.version!=="62.0.0")throw new Error(`Expected Apps Script V62 but deployed backend is ${data.version??"unknown"}`);
+  if(data.version!=="61.0.0")throw new Error(`Expected Apps Script V61 but deployed backend is ${data.version??"unknown"}`);
   if(data.transport!=="form-post")throw new Error(`Expected form-post transport but received ${data.transport??"unknown"}`);
   console.log(`Apps Script production health passed: V${data.version}, configured, ${data.transport}.`);
 }catch(error){console.error(`ERROR: Apps Script production health failed: ${error instanceof Error?error.message:String(error)}`);process.exit(1)}

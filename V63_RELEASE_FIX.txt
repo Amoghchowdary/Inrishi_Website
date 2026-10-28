@@ -1,0 +1,13 @@
+INRISHI V63 MAIN — RELEASE-GATE CORRECTION
+==========================================
+
+ROOT CAUSES FIXED
+1. Strict TypeScript form event: Admin first-login password form now uses FormEvent<HTMLFormElement> before accessing currentTarget.elements.
+2. Final release gate false negative: Admin password-change verification now checks the real backend action + SecurityPanel + changeAdminPasswordFn + Change password control, not the obsolete phrase "Change administrator password".
+3. Final release gate false negative: Customer registration/recovery verification now checks the actual registration/recovery backend actions and UI states, not the obsolete phrase "Register with Gmail".
+
+DATABASE / BACKEND
+No Apps Script or database schema change is required for V63. Existing Admin password changes in the database do not affect GitHub TypeScript/source verification. The live frontend continues to require the already-deployed Apps Script V61 health/contract.
+
+NEW EARLY EXIT CONTROL
+verify:form-event-types runs before compile guards/TypeScript and fails if currentTarget.elements is used without FormEvent<HTMLFormElement>.

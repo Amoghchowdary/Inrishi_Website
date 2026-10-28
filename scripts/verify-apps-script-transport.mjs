@@ -10,10 +10,10 @@ for(const token of [
   'host.endsWith("-script.googleusercontent.com")',
   'BACKEND_RESPONSE_TIMEOUT'
 ]){
-  if(!source.includes(token))errors.push(`Missing V62 form-post transport requirement: ${token}`);
+  if(!source.includes(token))errors.push(`Missing V61 form-post transport requirement: ${token}`);
 }
 for(const forbidden of ["ensureRpcBridge","INRISHI_APPS_SCRIPT_BRIDGE","google.script.run"]){
-  if(source.includes(forbidden))errors.push(`Broken persistent RPC bridge must not remain in V62 frontend: ${forbidden}`);
+  if(source.includes(forbidden))errors.push(`Broken persistent RPC bridge must not remain in V61 frontend: ${forbidden}`);
 }
 if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}
-console.log("V62 Apps Script transport verified: per-request POST/HtmlService response channel with dynamic Google sandbox origin trust.");
+console.log("V61 Apps Script transport verified: per-request POST/HtmlService response channel with dynamic Google sandbox origin trust.");

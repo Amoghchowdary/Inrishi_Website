@@ -12,7 +12,6 @@ must(api.includes("code:string|undefined")||api.includes("code: string | undefin
 must(!vite.includes('minify: "esbuild"')&&vite.includes('minify: "oxc"'),"Vite Oxc minifier guard failed.");
 for(const marker of ["export function AdminWorkspace","Inrishi Control Center","beginAdminLoginFn","verifyAdminLoginOtpFn","Loading production controls…"])must(admin.includes(marker),`Admin compile marker missing: ${marker}`);
 must(admin.includes("updateAdminProjectProgressFn"),"Admin project-progress function is not wired.");
-must(admin.includes("FormEvent<HTMLFormElement>"),"Admin form handlers that access form.elements must be typed as HTMLFormElement.");
 must(!admin.includes("detail:undefined")&&!admin.includes("detail: undefined"),"Admin must never send an explicit undefined optional project detail.");
 for(const marker of ["beginCustomerLoginFn","verifyCustomerLoginOtpFn","requestCustomerRegistrationOtpFn","verifyCustomerRegistrationOtpFn","Forgot Customer ID?"])must(customer.includes(marker),`Customer strict-auth marker missing: ${marker}`);
-if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V62 main compile regression guards passed.");
+if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V61 main compile regression guards passed.");

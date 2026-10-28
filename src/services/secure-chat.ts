@@ -5,7 +5,7 @@ export type ChatDeviceKey={role:ChatParticipantRole;subjectId:string;deviceId:st
 export type ChatConversation={id:string;type:string;customerId?:string;partnerId?:string;status:string;createdAt:string;updatedAt:string;participants:Array<{role:ChatParticipantRole;id:string}>;deviceKeys:ChatDeviceKey[]};
 export type ChatContext={ok:boolean;identity:{role:ChatRole;id:string;loginId:string;name:string};conversations:ChatConversation[]};
 export type EncryptedMessage={id:string;conversationId:string;senderRole:ChatParticipantRole;senderId:string;ciphertext:string;iv:string;wrappedKeysJson:string;attachmentIds:string;createdAt:string};
-const DB="inrishi-e2ee-v62",STORE="keys",KEY="device";
+const DB="inrishi-e2ee-v61",STORE="keys",KEY="device";
 const enc=new TextEncoder(),dec=new TextDecoder();
 function b64(bytes:ArrayBuffer|Uint8Array){const a=bytes instanceof Uint8Array?bytes:new Uint8Array(bytes);let s="";for(const x of a)s+=String.fromCharCode(x);return btoa(s)}
 function unb64(s:string){const raw=atob(s),a=new Uint8Array(raw.length);for(let i=0;i<raw.length;i++)a[i]=raw.charCodeAt(i);return a}

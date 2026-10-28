@@ -5,4 +5,4 @@ for(const a of ["chat.device.register","chat.context","chat.messages.list","chat
 if(!ui.includes("attachment")&&!ui.includes("Attachment"))errors.push("Chat attachment UI missing.");
 if(!admin.includes('<SecureChat role="admin"/>'))errors.push("Admin chat surface missing.");
 if(!customer.includes('<SecureChat role="customer"/>'))errors.push("Customer chat surface missing.");
-if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V62 encrypted-chat gate passed: browser-side AES-GCM/RSA-OAEP encryption, attachment encryption and role surfaces are present.");
+if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V61 encrypted-chat gate passed: browser-side AES-GCM/RSA-OAEP encryption, attachment encryption and role surfaces are present.");
