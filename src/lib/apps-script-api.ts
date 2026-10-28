@@ -13,7 +13,7 @@ function isTrustedAppsScriptOrigin(origin:string){
 }
 
 type Role="public"|"customer"|"admin";
-const KEYS={customer:"inrishi-v60-customer-session",admin:"inrishi-v60-admin-session"} as const;
+const KEYS={customer:"inrishi-v61-customer-session",admin:"inrishi-v61-admin-session"} as const;
 function currentRole():Role{
   if(typeof window==="undefined")return"public";
   const p=location.pathname;

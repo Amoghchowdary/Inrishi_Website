@@ -1,21 +1,20 @@
 import { appsScriptCall } from "@/lib/apps-script-api";
-import type { PortalStore, ProgressItem } from "@/lib/portal-store";
+import type { PortalStore,ProgressItem } from "@/lib/portal-store";
 import type { WebsiteInquiry } from "@/lib/business-api";
-import type { AdminAccount } from "@/services/admin-auth";
-
-export type AdminControlSnapshot={
-  ok:boolean;
-  version:string;
-  revision:number;
-  generatedAt:string;
-  store:PortalStore;
-  inquiries:WebsiteInquiry[];
-  admins:AdminAccount[];
-  counts:{customers:number;partners:number;partnerApplications:number;projects:number;inquiries:number;pendingPartners:number};
-};
-
+import type { AdminAccount,AdminPermission } from "@/services/admin-auth";
+export type ServiceConfig={id:string;name:string;description:string;active:boolean;partnerReferrable:boolean;incentiveType:"Fixed"|"Percentage";incentiveValue:number;qualifyingPaymentPercent:number;updatedAt?:string};
+export type PartnerServiceAccess={partnerId:string;serviceId:string;enabled:boolean;updatedAt?:string};
+export type CustomerRequirement={id:string;customerId:string;partnerId?:string;serviceId?:string;title:string;description:string;priority:string;status:string;assignedAdminId?:string;attachmentIds?:string;createdAt:string;updatedAt:string};
+export type NotificationRecord={id:string;recipientRole:string;recipientId:string;type:string;title:string;body:string;read:boolean;emailSent:boolean;createdAt:string};
+export type AuditRecord={id:string;actorRole:string;actorId:string;action:string;entityType:string;entityId:string;detail:string;createdAt:string};
+export type AdminControlSnapshot={ok:boolean;version:string;revision:number;generatedAt:string;admin?:AdminAccount;permissions:AdminPermission[];store:PortalStore;inquiries:WebsiteInquiry[];admins:AdminAccount[];services:ServiceConfig[];partnerServiceAccess:PartnerServiceAccess[];requirements:CustomerRequirement[];notifications:NotificationRecord[];audit:AuditRecord[];counts:{customers:number;partners:number;partnerApplications:number;projects:number;inquiries:number;pendingPartners:number;requirements:number;admins:number;services:number}};
 export const getAdminControlSnapshotFn=()=>appsScriptCall<AdminControlSnapshot>("admin.control.snapshot",{},{role:"admin"});
-export const updateAdminPartnerStatusFn=(data:{partnerId:string;status:"Pending approval"|"Approved"|"Rejected"|"Suspended"|"Inactive";adminNote?:string})=>appsScriptCall<{ok:boolean;status:string}>("admin.partner.status",data,{role:"admin"});
+export const updateAdminPartnerStatusFn=(data:{partnerId:string;status:"Pending approval"|"Approved"|"Rejected"|"Suspended"|"Inactive";adminNote?:string})=>appsScriptCall<{ok:boolean;status:string;referralCode?:string}>("admin.partner.status",data,{role:"admin"});
+export const resendPartnerCredentialsFn=(partnerId:string)=>appsScriptCall<{ok:boolean;message?:string}>("admin.partner.credentials.resend",{partnerId},{role:"admin"});
 export const updateAdminCustomerStatusFn=(data:{customerId:string;status:"Active"|"Paused"})=>appsScriptCall<{ok:boolean;status:string}>("admin.customer.status",data,{role:"admin"});
 export const updateAdminProjectProgressFn=(data:{customerId:string;progressId:string;status:ProgressItem["status"];percent:number;detail?:string})=>appsScriptCall<{ok:boolean;status:string;percent:number}>("admin.project.progress",data,{role:"admin"});
 export const saveAdminWebsiteControlsFn=(data:{scope:"main"|"partner";controls:Record<string,unknown>})=>appsScriptCall<{ok:boolean;scope:string}>("admin.controls.save",data,{role:"admin"});
+export const saveServiceFn=(data:Partial<ServiceConfig>&{name:string})=>appsScriptCall<{ok:boolean;service:ServiceConfig}>("admin.services.save",data,{role:"admin"});
+export const savePartnerServicesFn=(partnerId:string,serviceIds:string[])=>appsScriptCall<{ok:boolean}>("admin.partner.services.save",{partnerId,serviceIds},{role:"admin"});
+export const updateRequirementFn=(data:{id:string;status?:string;assignedAdminId?:string;priority?:string})=>appsScriptCall<{ok:boolean;requirement:CustomerRequirement}>("admin.requirements.update",data,{role:"admin"});
+export const updateIncentiveStatusFn=(data:{id:string;status:"Expected"|"Eligible"|"Approved"|"Paid"|"Cancelled";reference?:string})=>appsScriptCall<{ok:boolean;status:string}>("admin.incentive.status",data,{role:"admin"});

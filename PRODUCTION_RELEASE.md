@@ -1,6 +1,6 @@
-# INRISHI Main V60 Production Release
+# INRISHI Main V61 Production Release
 
-V60 is a functionality-stabilization release. The approved public design is unchanged.
+V61 is a functionality-stabilization release. The approved public design is unchanged.
 
 Production corrections:
 - stable Apps Script Web App POST transport restored;

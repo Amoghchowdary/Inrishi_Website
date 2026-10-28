@@ -632,13 +632,13 @@
 }
 
 
-/* V60 role separation: partner workspace is visually and structurally distinct from Super Admin. */
+/* V61 role separation: partner workspace is visually and structurally distinct from Super Admin. */
 .partner-workspace .workspace-header{border-bottom-color:rgba(47,229,167,.22);background:linear-gradient(90deg,rgba(3,20,25,.98),rgba(4,14,24,.98))}
 .partner-workspace .workspace-sidebar{border-color:rgba(47,229,167,.2);background:linear-gradient(180deg,rgba(4,24,29,.98),rgba(5,17,27,.98))}
 .partner-workspace .workspace-sidebar button{border-radius:8px}
 .partner-workspace .workspace-content>div:first-child{border-bottom:1px solid rgba(47,229,167,.14);padding-bottom:16px}
 
-/* V60 — Admin authentication and approved brand treatment. */
+/* V61 — Admin authentication and approved brand treatment. */
 .admin-brand-logo{
   display:block;
   width:88px;
