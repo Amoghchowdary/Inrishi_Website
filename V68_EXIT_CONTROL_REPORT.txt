@@ -1,0 +1,11 @@
+INRISHI V68 MAIN — EXIT CONTROL
+
+Release: 68.0.0
+Backend: Apps Script 62.0.0
+Main: https://www.inrishi.in
+Partner: https://partner.inrishi.in
+
+Release chain:
+config -> dependencies -> CSS -> design -> form typing -> compile guards -> architecture -> Pages -> navigation -> route recovery -> backend bridge -> transport -> runtime exports -> auth -> portal workflows -> identity/permissions -> services/incentives -> encrypted chat -> SEO -> action contract -> V68 cross-system integration -> historical regressions -> TypeScript -> audits -> production boundary -> UI -> build -> dist -> V68 artifact -> final release.
+
+No gate is bypassed.

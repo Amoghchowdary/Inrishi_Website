@@ -1,0 +1,11 @@
+import fs from "node:fs";
+const errors=[];const read=p=>fs.readFileSync(p,"utf8"),tree=read("src/routeTree.gen.ts"),html=read("index.html"),robots=read("public/robots.txt"),sitemap=read("public/sitemap.xml"),prepare=read("scripts/prepare-pages.mjs"),home=read("src/routes/index.tsx");
+const publicRoutes=["/services","/partner-program","/services/ai-business-transformation","/services/erp","/services/crm","/services/employee-management","/services/books-customization","/services/custom-software","/services/saas-products","/services/website-design"];
+for(const route of publicRoutes)if(!tree.includes(`'${route}'`))errors.push(`SEO route missing: ${route}`);
+for(const marker of ['rel="canonical"','property="og:title"','property="og:description"','name="twitter:card"','application/ld+json'])if(!html.includes(marker))errors.push(`Homepage SEO metadata missing: ${marker}`);
+for(const route of ["/admin","/customer-login","/customer-portal"])if(!robots.includes(`Disallow: ${route}`))errors.push(`Private route missing from robots exclusion: ${route}`);
+if(!robots.includes("Sitemap: https://www.inrishi.in/sitemap.xml"))errors.push("Main sitemap directive missing.");
+for(const url of ["https://www.inrishi.in/","https://www.inrishi.in/services","https://www.inrishi.in/partner-program"])if(!sitemap.includes(url))errors.push(`Sitemap URL missing: ${url}`);
+if(!prepare.includes("partner-program")||!prepare.includes("services/erp"))errors.push("Per-route SEO page generation is incomplete.");
+if(!home.includes("Become a Partner")||!home.includes("https://partner.inrishi.in/"))errors.push("Main Become a Partner acquisition CTA missing.");
+if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V62 Main SEO gate passed: public service/partner pages, metadata, sitemap, robots and Partner CTA are present.");

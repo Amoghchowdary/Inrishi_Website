@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /r/
+Disallow: /customer-login
+Disallow: /customer-portal
+Sitemap: https://www.inrishi.in/sitemap.xml

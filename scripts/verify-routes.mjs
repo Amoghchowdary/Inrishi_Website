@@ -1,0 +1,12 @@
+import fs from "node:fs";
+const r=p=>fs.readFileSync(p,"utf8"),e=[],n=(o,m)=>{if(!o)e.push(m)};
+const tree=r("src/routeTree.gen.ts"),footer=r("src/components/site-footer.tsx"),admin=r("src/components/admin-workspace.tsx"),a=r("src/routes/admin.tsx"),hidden=r("src/routes/r.9f2a7c4d6e.tsx"),home=r("src/routes/index.tsx");
+for(const route of ["'/'","'/contact'","'/sample-work'","'/customer-login'","'/customer-portal'","'/admin'","'/r/9f2a7c4d6e'"])n(tree.includes(route),`Main route missing: ${route}`);
+for(const bad of ["'/partner'","'/partner-login'","'/partner-register'","'/partner-portal'","'/login'","'/register'","'/portal'"])n(!tree.includes(bad),`Partner route leaked into Main: ${bad}`);
+n(a.includes("getCurrentAdminFn")&&a.includes("AdminWorkspace"),"/admin must load authenticated AdminWorkspace.");
+n(hidden.includes("getCurrentAdminFn")&&hidden.includes("AdminWorkspace"),"Hidden admin alias must load same authenticated workspace.");
+for(const token of ["Control center","Dashboard","Website inquiries","Customers","Partners","Projects","Security & access"])n(admin.includes(token),`Admin UI missing: ${token}`);
+n(footer.includes('https://partner.inrishi.in/')&&footer.includes('https://partner.inrishi.in/login'),"Main footer must link directly to partner CNAME.");
+n(!home.includes("PartnerWebsite")&&!home.includes("isPartnerHostname"),"Main homepage must not hostname-switch into Partner site.");
+for(const legacy of ["src/routes/partner.tsx","src/routes/partner-login.tsx","src/routes/partner-register.tsx","src/routes/partner-portal.tsx"])n(!fs.existsSync(legacy),`Legacy Partner route source leaked into Main: ${legacy}`);
+if(e.length){console.error(e.map(x=>`ERROR: ${x}`).join("\n"));process.exit(1)}console.log("V62 main route contract passed: Main/Admin/Customer routes are isolated from Partner routes.");

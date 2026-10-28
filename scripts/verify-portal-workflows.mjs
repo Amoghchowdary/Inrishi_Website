@@ -1,0 +1,11 @@
+import fs from "node:fs";
+const errors=[];
+const admin=fs.readFileSync("src/components/admin-workspace.tsx","utf8");
+const control=fs.readFileSync("src/services/admin-control.ts","utf8");
+const customer=fs.readFileSync("src/routes/customer-portal.tsx","utf8");
+const customerService=fs.readFileSync("src/services/customer-portal.ts","utf8");
+for(const marker of ["Dashboard","Website inquiries","Customers","Requirements","Partners","Services","Projects","Incentives","Communications","Administration","Audit trail","Security"])if(!admin.includes(marker))errors.push(`Admin module missing: ${marker}`);
+for(const action of ["admin.control.snapshot","admin.partner.status","admin.partner.credentials.resend","admin.customer.status","admin.project.progress","admin.controls.save","admin.services.save","admin.partner.services.save","admin.requirements.update","admin.incentive.status"])if(!control.includes(`\"${action}\"`))errors.push(`Admin backend action missing: ${action}`);
+for(const marker of ["getCustomerPortalSnapshotFn","Customer requirements","Submit requirement","SecureChat","Security settings","Referral"])if(!customer.includes(marker))errors.push(`Customer portal workflow missing: ${marker}`);
+if(!customerService.includes("customer.portal.snapshot"))errors.push("Customer portal snapshot backend action missing.");
+if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V62 Main portal workflow verification passed: Super Admin, Customer requirements, service access, projects, incentives and chat are wired.");

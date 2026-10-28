@@ -1,0 +1,9 @@
+V68 MAIN CONTENT/READABILITY CHECK
+- Premium font pair: Manrope + Sora
+- Service copy shortened and business-problem-led
+- Headings increased in contrast and hierarchy
+- Service inclusions reduced to scan-friendly blocks
+- Continuous services reel retained
+- Visual workflow gallery retained and rewritten
+- Apps Script backend remains 62.0.0
+- No authentication/database behavior changed
