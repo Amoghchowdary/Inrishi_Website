@@ -8,4 +8,4 @@ if(!robots.includes("Sitemap: https://www.inrishi.in/sitemap.xml"))errors.push("
 for(const url of ["https://www.inrishi.in/","https://www.inrishi.in/services","https://www.inrishi.in/partner-program"])if(!sitemap.includes(url))errors.push(`Sitemap URL missing: ${url}`);
 if(!prepare.includes("partner-program")||!prepare.includes("services/erp"))errors.push("Per-route SEO page generation is incomplete.");
 if(!home.includes("Become a Partner")||!home.includes("https://partner.inrishi.in/"))errors.push("Main Become a Partner acquisition CTA missing.");
-if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V61 Main SEO gate passed: public service/partner pages, metadata, sitemap, robots and Partner CTA are present.");
+if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}console.log("V62 Main SEO gate passed: public service/partner pages, metadata, sitemap, robots and Partner CTA are present.");

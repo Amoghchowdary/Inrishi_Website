@@ -9,4 +9,4 @@ for(const token of ["Control center","Dashboard","Website inquiries","Customers"
 n(footer.includes('https://partner.inrishi.in/')&&footer.includes('https://partner.inrishi.in/login'),"Main footer must link directly to partner CNAME.");
 n(!home.includes("PartnerWebsite")&&!home.includes("isPartnerHostname"),"Main homepage must not hostname-switch into Partner site.");
 for(const legacy of ["src/routes/partner.tsx","src/routes/partner-login.tsx","src/routes/partner-register.tsx","src/routes/partner-portal.tsx"])n(!fs.existsSync(legacy),`Legacy Partner route source leaked into Main: ${legacy}`);
-if(e.length){console.error(e.map(x=>`ERROR: ${x}`).join("\n"));process.exit(1)}console.log("V61 main route contract passed: Main/Admin/Customer routes are isolated from Partner routes.");
+if(e.length){console.error(e.map(x=>`ERROR: ${x}`).join("\n"));process.exit(1)}console.log("V62 main route contract passed: Main/Admin/Customer routes are isolated from Partner routes.");

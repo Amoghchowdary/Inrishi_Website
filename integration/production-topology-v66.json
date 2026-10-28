@@ -1,0 +1,10 @@
+{
+  "release": "66.0.0",
+  "backendVersion": "62.0.0",
+  "transport": "apps-script-form-post",
+  "appsScriptUrl": "https://script.google.com/macros/s/AKfycbzQ1YMIghWp_p3hy3NxsJraffY_AjLA77JlyfYF7YvkGlylLnV2MiDgJViLjByn9ntq/exec",
+  "mainOrigin": "https://www.inrishi.in",
+  "partnerOrigin": "https://partner.inrishi.in",
+  "mainRepository": "Amoghchowdary/Inrishi_Website",
+  "partnerRepository": "Amoghchowdary/Inrishi_Partner"
+}

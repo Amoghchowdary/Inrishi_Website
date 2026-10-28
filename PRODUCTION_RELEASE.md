@@ -1,16 +1,15 @@
-# INRISHI Main V63 Production Release
+# INRISHI Main V66 Production Release
 
-V63 is a functionality-stabilization release. The approved public design is unchanged.
+V66 is the coordinated production-integration release for the INRISHI Main frontend. The approved public design remains unchanged.
 
-Production corrections:
-- stable Apps Script Web App POST transport restored;
-- Admin sign-in transport repaired;
-- Admin Security includes authenticated password change;
-- customers register with their own Gmail after OTP verification;
-- Forgot Customer ID and Forgot Password are OTP-first;
-- Customer Settings includes password change;
-- customers converted from Partner leads must provide their own valid Gmail;
-- no customer pseudo-email/inbox is issued by INRISHI;
-- GitHub Pages path/recovery and V50-V59 regression controls remain locked.
+Production alignment:
+- Main frontend release: 66.0.0;
+- Partner frontend release: 66.0.0;
+- shared Google Apps Script backend contract: 62.0.0;
+- stable Apps Script Web App form-POST transport;
+- Admin sign-in, OTP, password change and Control Center preserved;
+- Customer Gmail registration, OTP verification and recovery preserved;
+- Main and Partner use the same 72-action backend contract;
+- GitHub Pages route recovery, security gates and post-deploy smoke testing remain enforced.
 
-GitHub Actions is the only production build/deployment acceptance environment.
+GitHub Actions is the production build/deployment acceptance environment. Frontend release numbers are intentionally independent from the Apps Script backend contract version.

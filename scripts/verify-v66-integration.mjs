@@ -1,0 +1,22 @@
+import fs from "node:fs";
+const errors=[];const need=(ok,msg)=>{if(!ok)errors.push(msg)};
+const pkg=JSON.parse(fs.readFileSync("package.json","utf8"));
+const own=JSON.parse(fs.readFileSync("backend-contract.json","utf8"));
+const backend=JSON.parse(fs.readFileSync("integration/apps-script-v62-contract.json","utf8"));
+const peer=JSON.parse(fs.readFileSync("integration/partner-v66-contract.json","utf8"));
+const topology=JSON.parse(fs.readFileSync("integration/production-topology-v66.json","utf8"));
+const cfg=fs.readFileSync("public/inrishi-config.js","utf8");
+const runtime=fs.readFileSync("src/lib/runtime-config.ts","utf8");
+const workflow=fs.readFileSync(".github/workflows/deploy-pages.yml","utf8");
+const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+need(pkg.version==="66.0.0","Frontend package must be V66.");
+need(own.version==="62.0.0"&&backend.version==="62.0.0"&&peer.version==="62.0.0","Main, Partner and Apps Script must target backend contract V62.");
+need(own.transport==="apps-script-form-post"&&backend.transport===own.transport&&peer.transport===own.transport,"Transport mismatch across Main/Partner/Apps Script.");
+need(same(own.actions,backend.actions)&&same(peer.actions,backend.actions),"72-action backend contract is not identical across Main/Partner/Apps Script.");
+need(topology.release==="66.0.0"&&topology.backendVersion==="62.0.0","V66 topology manifest is invalid.");
+need(cfg.includes('APP_VERSION: "66.0.0"')&&runtime.includes('APP_VERSION: "66.0.0"'),"V66 runtime identity missing.");
+need(cfg.includes(topology.appsScriptUrl)&&runtime.includes(topology.appsScriptUrl),"Apps Script deployment URL mismatch.");
+need(cfg.includes(topology.mainOrigin)&&cfg.includes(topology.partnerOrigin),"Main/Partner production origins missing from runtime config.");
+need(workflow.includes("Verify deployed Apps Script backend contract")&&workflow.includes("verify-backend-health.mjs"),"GitHub workflow does not gate against deployed Apps Script V62.");
+if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}
+console.log("V66 MAIN integration gate passed: frontend 66.0.0, shared Apps Script V62 contract, 72 actions, production origins and live-health workflow gate are aligned.");
