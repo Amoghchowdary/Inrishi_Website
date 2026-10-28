@@ -1,6 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
-// Inrishi V67 MAIN production route tree.
+// Inrishi V68 MAIN production route tree.
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContactRouteImport } from './routes/contact'

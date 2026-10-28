@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Inrishi">
-  <rect width="64" height="64" rx="14" fill="#06111b"/>
-  <path d="M17 16h8v32h-8zM29 16h8l10 18V16h8v32h-8L37 30v18h-8z" fill="#33e8af"/>
-  <path d="M17 50h38" stroke="#87f4ff" stroke-width="2" stroke-linecap="round" opacity=".9"/>
-</svg>
