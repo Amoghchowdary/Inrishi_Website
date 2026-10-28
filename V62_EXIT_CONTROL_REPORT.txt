@@ -1,0 +1,16 @@
+INRISHI V62 EXIT CONTROL REPORT
+================================
+
+ROOT CAUSE FIXED
+- V61 Main failed strict TypeScript at admin-workspace.tsx because a generic React FormEvent was used with currentTarget.elements.
+- V62 types form handlers that read form.elements as FormEvent<HTMLFormElement>.
+
+NEW PERMANENT EXIT CONTROL
+- verify:form-event-types runs early in preflight.
+- Historical regression gate blocks the V61 TS2339 EventTarget.elements failure.
+- Strict TypeScript remains mandatory before audits/build.
+
+ARCHITECTURE / DESIGN
+- Approved V61 design and V61 functionality are preserved.
+- Main, Partner and Apps Script remain separate production artifacts.
+- V61 identity, permissions, services, incentives, encrypted chat and SEO scope is unchanged.

@@ -1,4 +1,4 @@
-# INRISHI V61 Production Architecture
+# INRISHI V62 Production Architecture
 
 ## Production boundaries
 
