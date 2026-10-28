@@ -1,10 +1,10 @@
-# INRISHI Main V66 Production Release
+# INRISHI Main V67 Production Release
 
-V66 is the coordinated production-integration release for the INRISHI Main frontend. The approved public design remains unchanged.
+V67 is the coordinated production-integration release for the INRISHI Main frontend. The approved public design remains unchanged.
 
 Production alignment:
-- Main frontend release: 66.0.0;
-- Partner frontend release: 66.0.0;
+- Main frontend release: 67.0.0;
+- Partner frontend release: 67.0.0;
 - shared Google Apps Script backend contract: 62.0.0;
 - stable Apps Script Web App form-POST transport;
 - Admin sign-in, OTP, password change and Control Center preserved;

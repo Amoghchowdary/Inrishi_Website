@@ -9,7 +9,7 @@ if(fs.existsSync(dist)){
  }
  for(const rel of ["404.html","inrishi-config.js","favicon.png","inrishi-public-logo.png","v38-cosmic-reference.jpg"])must(fs.existsSync(path.join(dist,rel)),`Production artifact missing: ${rel}`);
  const cfg=fs.existsSync(path.join(dist,"inrishi-config.js"))?fs.readFileSync(path.join(dist,"inrishi-config.js"),"utf8"):"";
- must(cfg.includes('APP_VERSION: "66.0.0"'),"Built runtime config is not V66.");
+ must(cfg.includes('APP_VERSION: "67.0.0"'),"Built runtime config is not V67.");
  must(cfg.includes('SITE_ID: "main"'),"Built runtime site identity is wrong.");
  const four=fs.existsSync(path.join(dist,"404.html"))?fs.readFileSync(path.join(dist,"404.html"),"utf8"):"";
  must(four.includes('var repo="Inrishi_Website"'),"404 route recovery repository identity is wrong.");
@@ -17,4 +17,4 @@ if(fs.existsSync(dist)){
  must(assets.some(x=>x.endsWith(".js")),"Compiled JavaScript bundle is missing."); must(assets.some(x=>x.endsWith(".css")),"Compiled CSS bundle is missing.");
 }
 if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}
-console.log("V66 production artifact integrity passed for main.");
+console.log("V67 production artifact integrity passed for main.");

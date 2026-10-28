@@ -1,17 +1,17 @@
-INRISHI MAIN V66 — DIRECT PRODUCTION HANDOFF
+INRISHI MAIN V67 — DIRECT PRODUCTION HANDOFF
 
 Version source (NO .git):
-C:\Users\MYPC\Desktop\InRishi\INRISHI_WEBSITE_V66_MAIN
+C:\Users\MYPC\Desktop\InRishi\INRISHI_WEBSITE_V67_MAIN
 
 Persistent Git deployment clone:
 C:\Users\MYPC\Desktop\InRishi\Deployment\Inrishi_Website
 
 Production order:
 1. Refresh persistent deployment clone from origin/main.
-2. Verify V66 source identity and Apps Script V62 contract.
-3. Robocopy V66 into the persistent clone, excluding .git/build/local files.
+2. Verify V67 source identity and Apps Script V62 contract.
+3. Robocopy V67 into the persistent clone, excluding .git/build/local files.
 4. Verify staged workflow/contract/package identity.
 5. Commit and push origin main.
-6. Fetch origin again and verify origin/main contains frontend V66 + backend contract V62.
+6. Fetch origin again and verify origin/main contains frontend V67 + backend contract V62.
 
-Use PUSH_MAIN_V66_PRODUCTION.ps1. No local dev/build/testing stage is required.
+Use PUSH_MAIN_V67_PRODUCTION.ps1. No local dev/build/testing stage is required.

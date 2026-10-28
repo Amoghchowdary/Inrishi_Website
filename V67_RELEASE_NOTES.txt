@@ -1,0 +1,18 @@
+INRISHI MAIN V67 — VISUAL DISCOVERY RELEASE
+
+Frontend: 67.0.0
+Shared Apps Script backend contract: 62.0.0
+
+V67 public-site changes:
+- Added a continuous services reel directly below the homepage hero controls.
+- Reel contains all eight Inrishi service categories with visual icons and pauses on pointer hover.
+- Added a visual capability gallery so visitors can understand CRM, ERP, AI automation and website outcomes at a glance.
+- Preserved the approved cosmic/robot hero, brand assets, responsive navigation and existing service/detail content.
+- Existing transparent-to-white service-card interaction remains intact.
+- No backend schema, database, Admin credentials or Apps Script deployment changes are required.
+
+Deployment model:
+C:\Users\MYPC\Desktop\InRishi\INRISHI_WEBSITE_V67_MAIN
+  -> Robocopy ->
+C:\Users\MYPC\Desktop\InRishi\Deployment\Inrishi_Website
+  -> git push origin main -> GitHub Actions production deployment.

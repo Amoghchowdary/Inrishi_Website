@@ -1,7 +1,7 @@
 {
-  "name": "inrishi-website-v66-main-production",
+  "name": "inrishi-website-v67-main-production",
   "private": true,
-  "version": "66.0.0",
+  "version": "67.0.0",
   "type": "module",
   "scripts": {
     "check:config": "node scripts/check-config.mjs",
@@ -21,7 +21,7 @@
     "verify:dist": "node scripts/verify-dist.mjs",
     "verify:release": "node scripts/verify-release.mjs",
     "prepare:pages": "node scripts/prepare-pages.mjs",
-    "preflight": "npm run check:config && npm run verify:dependencies && npm run verify:css-deps && npm run verify:design && npm run verify:form-event-types && npm run verify:compile-guards && npm run verify:architecture && npm run verify:pages && npm run verify:navigation && npm run verify:route-recovery && npm run verify:backend-bridge && npm run verify:transport && npm run verify:runtime-exports && npm run verify:auth-contract && npm run verify:portal-workflows && npm run verify:identity-permissions && npm run verify:services-incentives && npm run verify:chat-e2ee && npm run verify:seo && npm run verify:action-contract && npm run verify:v66-integration && npm run verify:v66-regressions && npm run typecheck && npm run audit:all && npm run audit:prod && npm run verify && npm run verify:ui && npm run build && npm run verify:dist && npm run verify:artifact-v66 && npm run verify:release",
+    "preflight": "npm run check:config && npm run verify:dependencies && npm run verify:css-deps && npm run verify:design && npm run verify:form-event-types && npm run verify:compile-guards && npm run verify:architecture && npm run verify:pages && npm run verify:navigation && npm run verify:route-recovery && npm run verify:backend-bridge && npm run verify:transport && npm run verify:runtime-exports && npm run verify:auth-contract && npm run verify:portal-workflows && npm run verify:identity-permissions && npm run verify:services-incentives && npm run verify:chat-e2ee && npm run verify:seo && npm run verify:action-contract && npm run verify:v67-integration && npm run verify:v67-regressions && npm run typecheck && npm run audit:all && npm run audit:prod && npm run verify && npm run verify:ui && npm run build && npm run verify:dist && npm run verify:artifact-v67 && npm run verify:release",
     "verify:pages": "node scripts/verify-pages-deployment.mjs",
     "verify:navigation": "node scripts/verify-navigation.mjs",
     "verify:backend-bridge": "node scripts/verify-backend-bridge.mjs",
@@ -35,9 +35,9 @@
     "verify:chat-e2ee": "node scripts/verify-chat-e2ee.mjs",
     "verify:seo": "node scripts/verify-seo.mjs",
     "verify:form-event-types": "node scripts/verify-form-event-types.mjs",
-    "verify:v66-regressions": "node scripts/verify-v66-regressions.mjs",
-    "verify:artifact-v66": "node scripts/verify-production-artifact-v66.mjs",
-    "verify:v66-integration": "node scripts/verify-v66-integration.mjs"
+    "verify:v67-regressions": "node scripts/verify-v67-regressions.mjs",
+    "verify:artifact-v67": "node scripts/verify-production-artifact-v67.mjs",
+    "verify:v67-integration": "node scripts/verify-v67-integration.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "1.1.15",
