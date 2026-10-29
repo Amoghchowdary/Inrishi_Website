@@ -16,7 +16,7 @@ type RuntimeOverride = Omit<Partial<InrishiRuntimeConfig>, "PORTALS"> & { PORTAL
 declare global { interface Window { INRISHI_CONFIG?: RuntimeOverride; } }
 
 const defaults: InrishiRuntimeConfig = {
-  APP_VERSION: "68.0.0",
+  APP_VERSION: "69.0.0",
   ENVIRONMENT: "production",
   SITE_ID: "main",
   APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbzQ1YMIghWp_p3hy3NxsJraffY_AjLA77JlyfYF7YvkGlylLnV2MiDgJViLjByn9ntq/exec",

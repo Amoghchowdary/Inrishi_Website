@@ -1,0 +1,24 @@
+INRISHI MAIN V69 — EXIT CONTROL
+
+Frontend: 69.0.0
+Backend contract: 63.0.0
+Contract actions: 72
+Apps Script transport: apps-script-form-post
+Domain: https://www.inrishi.in
+Partner domain: https://partner.inrishi.in
+
+Locked gates:
+- complete source/runtime configuration
+- product/pricing/AI visual content
+- premium typography
+- GitHub Pages route/path recovery
+- backend form-post transport
+- OTP/authentication and permissions
+- portal workflows and encrypted chat
+- action-contract equality with V63
+- legal/footer links
+- V69 integration and historical regression gates
+- production repository boundary
+- GitHub Actions backend health check before build/deploy
+
+No .git metadata and no PS1 deployment wrapper are present in the release source.

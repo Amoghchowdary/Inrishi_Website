@@ -6,4 +6,4 @@ walk("src");
 const admin=fs.readFileSync("src/components/admin-workspace.tsx","utf8");
 if(!admin.includes("forcePassword(e:FormEvent<HTMLFormElement>)"))errors.push("Admin first-login password form is not strongly typed as HTMLFormElement.");
 if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}
-console.log("V68 form-event type gate passed: every currentTarget.elements access is bound to HTMLFormElement.");
+console.log("V69 form-event type gate passed: every currentTarget.elements access is bound to HTMLFormElement.");

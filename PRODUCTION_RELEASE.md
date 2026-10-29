@@ -1,15 +1,7 @@
-# INRISHI Main V68 Production Release
+# INRISHI Main V69 Production Release
 
-V68 is the coordinated production-integration release for the INRISHI Main frontend. The approved public design remains unchanged.
+Frontend `69.0.0` for `https://www.inrishi.in`.
 
-Production alignment:
-- Main frontend release: 68.0.0;
-- Partner frontend release: 68.0.0;
-- shared Google Apps Script backend contract: 62.0.0;
-- stable Apps Script Web App form-POST transport;
-- Admin sign-in, OTP, password change and Control Center preserved;
-- Customer Gmail registration, OTP verification and recovery preserved;
-- Main and Partner use the same 72-action backend contract;
-- GitHub Pages route recovery, security gates and post-deploy smoke testing remain enforced.
+This release requires the shared Apps Script backend contract `63.0.0` at the existing production `/exec` URL. GitHub Actions verifies backend health before installing dependencies or deploying Pages.
 
-GitHub Actions is the production build/deployment acceptance environment. Frontend release numbers are intentionally independent from the Apps Script backend contract version.
+V69 is a product-positioning rebuild: simplified AI-software positioning, product UI simulations, public pricing, enterprise/AI transformation sections, stronger navigation and legal footer pages. Existing Admin/Customer authentication and portal architecture are preserved.

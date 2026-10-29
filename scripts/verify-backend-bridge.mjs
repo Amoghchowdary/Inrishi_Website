@@ -2,7 +2,7 @@ import fs from "node:fs";
 const errors=[];
 const api=fs.readFileSync("src/lib/apps-script-api.ts","utf8"),cfg=fs.readFileSync("public/inrishi-config.js","utf8");
 if(!api.includes("pageUrl:location.href"))errors.push("Apps Script request must include pageUrl.");
-if(!api.includes("origin:location.origin"))errors.push("V62 form POST must send the actual frontend origin.");
+if(!api.includes("origin:location.origin"))errors.push("V63 form POST must send the actual frontend origin.");
 if(!api.includes('form.method="POST"')||!api.includes("form.submit()"))errors.push("V62 form-post backend transport is missing.");
 if(api.includes("ensureRpcBridge"))errors.push("Broken persistent RPC bridge returned.");
 if(!cfg.includes('SITE_ID: "main"'))errors.push("SITE_ID mismatch.");

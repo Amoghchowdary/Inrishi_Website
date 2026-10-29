@@ -10,7 +10,7 @@ for(const token of [
   'host.endsWith("-script.googleusercontent.com")',
   'BACKEND_RESPONSE_TIMEOUT'
 ]){
-  if(!source.includes(token))errors.push(`Missing V62 form-post transport requirement: ${token}`);
+  if(!source.includes(token))errors.push(`Missing V63 form-post transport requirement: ${token}`);
 }
 for(const forbidden of ["ensureRpcBridge","INRISHI_APPS_SCRIPT_BRIDGE","google.script.run"]){
   if(source.includes(forbidden))errors.push(`Broken persistent RPC bridge must not remain in V62 frontend: ${forbidden}`);
