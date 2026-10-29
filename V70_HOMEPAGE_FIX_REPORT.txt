@@ -1,0 +1,14 @@
+INRISHI MAIN V70 — HOMEPAGE INTERACTION / VISIBILITY FIX
+
+Frontend: 70.0.0
+Backend contract: 63.0.0 (unchanged)
+
+Locked corrections:
+1. Right-side hero robot + INRISHI artwork is contained inside a dedicated visible frame using object-fit: contain and explicit responsive max-height rules.
+2. Hero artwork, hero headline/copy and floating CRM/ERP/AI callouts are clickable.
+3. Product reel is two identical groups moving with a linear infinite translate animation for a seamless continuous loop.
+4. Every reel product label links to its matching product card.
+5. Product cards expose stable scroll targets and clickable product titles.
+6. V70 homepage-specific exit control blocks release if any of the above hooks disappear.
+
+No Partner or Apps Script change is required for this release.

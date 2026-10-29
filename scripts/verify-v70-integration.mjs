@@ -9,14 +9,14 @@ const cfg=fs.readFileSync("public/inrishi-config.js","utf8");
 const runtime=fs.readFileSync("src/lib/runtime-config.ts","utf8");
 const workflow=fs.readFileSync(".github/workflows/deploy-pages.yml","utf8");
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
-need(pkg.version==="69.0.0","Frontend package must be V69.");
+need(pkg.version==="70.0.0","Frontend package must be V70.");
 need(own.version==="63.0.0"&&backend.version==="63.0.0"&&peer.version==="63.0.0","Main, Partner and Apps Script must target backend contract V63.");
 need(own.transport==="apps-script-form-post"&&backend.transport===own.transport&&peer.transport===own.transport,"Transport mismatch across Main/Partner/Apps Script.");
 need(same(own.actions,backend.actions)&&same(peer.actions,backend.actions),"72-action backend contract is not identical across Main/Partner/Apps Script.");
-need(topology.release==="69.0.0"&&topology.backendVersion==="63.0.0","V69 topology manifest is invalid.");
-need(cfg.includes('APP_VERSION: "69.0.0"')&&runtime.includes('APP_VERSION: "69.0.0"'),"V69 runtime identity missing.");
+need(topology.release==="70.0.0"&&topology.backendVersion==="63.0.0","V70 topology manifest is invalid.");
+need(cfg.includes('APP_VERSION: "70.0.0"')&&runtime.includes('APP_VERSION: "70.0.0"'),"V70 runtime identity missing.");
 need(cfg.includes(topology.appsScriptUrl)&&runtime.includes(topology.appsScriptUrl),"Apps Script deployment URL mismatch.");
 need(cfg.includes(topology.mainOrigin)&&cfg.includes(topology.partnerOrigin),"Main/Partner production origins missing from runtime config.");
 need(workflow.includes("Verify deployed Apps Script backend contract")&&workflow.includes("verify-backend-health.mjs"),"GitHub workflow does not gate against deployed Apps Script V63.");
 if(errors.length){console.error(errors.map(e=>`ERROR: ${e}`).join("\n"));process.exit(1)}
-console.log("V69 MAIN integration gate passed: frontend 69.0.0, shared Apps Script V63 contract, 72 actions, production origins and live-health workflow gate are aligned.");
+console.log("V70 MAIN integration gate passed: frontend 70.0.0, shared Apps Script V63 contract, 72 actions, production origins and live-health workflow gate are aligned.");

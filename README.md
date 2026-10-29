@@ -1,4 +1,4 @@
-# INRISHI Main Production — V69
+# INRISHI Main Production — V70
 
 Production frontend for `https://www.inrishi.in`.
 

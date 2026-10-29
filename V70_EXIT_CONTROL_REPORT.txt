@@ -1,6 +1,6 @@
-INRISHI MAIN V69 — EXIT CONTROL
+INRISHI MAIN V70 — EXIT CONTROL
 
-Frontend: 69.0.0
+Frontend: 70.0.0
 Backend contract: 63.0.0
 Contract actions: 72
 Apps Script transport: apps-script-form-post
@@ -17,7 +17,7 @@ Locked gates:
 - portal workflows and encrypted chat
 - action-contract equality with V63
 - legal/footer links
-- V69 integration and historical regression gates
+- V70 integration and historical regression gates
 - production repository boundary
 - GitHub Actions backend health check before build/deploy
 

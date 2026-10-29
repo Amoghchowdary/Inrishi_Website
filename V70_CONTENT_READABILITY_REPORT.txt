@@ -1,4 +1,4 @@
-INRISHI MAIN V69 — CONTENT / READABILITY
+INRISHI MAIN V70 — CONTENT / READABILITY
 
 Typography: Plus Jakarta Sans + Sora
 Writing: short Indian-market business language; no internal technical jargon in the primary customer journey.

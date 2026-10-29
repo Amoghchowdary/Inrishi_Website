@@ -1,10 +1,10 @@
-INRISHI MAIN V69 — PRODUCT-POSITIONING REBUILD
+INRISHI MAIN V70 — PRODUCT-POSITIONING REBUILD
 
-Frontend: 69.0.0
+Frontend: 70.0.0
 Required Apps Script backend: 63.0.0
 Production domain: https://www.inrishi.in
 
-V69 rebuilds the public story around what a customer can understand quickly:
+V70 rebuilds the public story around what a customer can understand quickly:
 - Inrishi positioned as AI software for Indian businesses.
 - Primary products: Business Website, CRM, Employee Management, ERP.
 - Business Website: ₹25,000 + GST; domain, hosting, cloud server, website, SEO setup and Google Business Profile management; AMC ₹1,500/year.

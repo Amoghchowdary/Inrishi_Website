@@ -10,8 +10,8 @@ const adminAuth=fs.readFileSync("src/services/admin-auth.ts","utf8");
 const customerUi=fs.readFileSync("src/routes/customer-login.tsx","utf8");
 const customerAuth=fs.readFileSync("src/services/customer-auth.ts","utf8");
 const contract=JSON.parse(fs.readFileSync("backend-contract.json","utf8"));
-need(pkg.version==="69.0.0","Frontend version mismatch: expected V69.");
-need(cfg.includes('APP_VERSION: "69.0.0"')&&cfg.includes('SITE_ID: "main"'),"V69 Main runtime identity missing.");
+need(pkg.version==="70.0.0","Frontend version mismatch: expected V70.");
+need(cfg.includes('APP_VERSION: "70.0.0"')&&cfg.includes('SITE_ID: "main"'),"V70 Main runtime identity missing.");
 need(cfg.includes("https://script.google.com/macros/s/AKfycbzQ1YMIghWp_p3hy3NxsJraffY_AjLA77JlyfYF7YvkGlylLnV2MiDgJViLjByn9ntq/exec"),"Backend URL missing.");
 need(workflow.includes("Verify deployed Apps Script backend contract")&&workflow.includes("verify-backend-health.mjs"),"Live Apps Script V63 health gate missing.");
 need(workflow.includes("www.inrishi.in"),"Main Pages domain missing.");
@@ -24,4 +24,4 @@ need(customerUi.includes('mode==="registerRequest"')&&customerUi.includes("Send 
 need(fs.existsSync("dist/index.html"),"dist missing.");
 need(tree.includes("'/admin'")&&!tree.includes("'/partner'"),"Main/Partner route boundary failed.");
 if(errors.length){console.error(errors.map(x=>`ERROR: ${x}`).join("\n"));process.exit(1)}
-console.log("V69 Main final production release gate passed: behavior-based Admin password and Customer Gmail registration/recovery controls verified against unchanged Apps Script V63 backend.");
+console.log("V70 Main final production release gate passed: behavior-based Admin password and Customer Gmail registration/recovery controls verified against unchanged Apps Script V63 backend.");
