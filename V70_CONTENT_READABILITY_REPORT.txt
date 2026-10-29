@@ -1,7 +1,0 @@
-INRISHI MAIN V70 — CONTENT / READABILITY
-
-Typography: Plus Jakarta Sans + Sora
-Writing: short Indian-market business language; no internal technical jargon in the primary customer journey.
-Primary story: Problem → Product → Product preview → Price → AI automation → Implementation → Partner Network → CTA.
-Visual learning: CRM, ERP, EMS and Website UI simulations show what each product actually does.
-Navigation: Products / AI Automation / Pricing / How it works / Partner / Contact / Login.

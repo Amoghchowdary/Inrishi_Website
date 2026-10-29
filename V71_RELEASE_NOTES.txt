@@ -1,0 +1,8 @@
+INRISHI MAIN V71
+
+- Keeps the full INRISHI hero artwork unobstructed.
+- Moves AI Automation, ERP and CRM quick links into a dock below the artwork.
+- Uses four identical reel groups and a one-group animation cycle for seamless continuous scrolling.
+- Main dark interactive tiles turn white on mouse hover/focus.
+- Keeps Apps Script backend contract at V63 / 63.0.0.
+- No PS1 deployment files.

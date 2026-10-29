@@ -1,0 +1,15 @@
+INRISHI MAIN V71 — EXIT CONTROL REPORT
+
+Frontend: 71.0.0
+Backend contract: 63.0.0
+Critical production files: present
+PS1 deployment files: none
+.git directories: none
+Source-level gates: PASSED
+V71 homepage gate: PASSED
+- Hero artwork unobstructed by product cards
+- AI/ERP/CRM quick links moved to bottom dock
+- Four-group continuous reel with -25% one-group cycle
+- Main interactive dark tiles switch to white on hover/focus
+Integration gate: PASSED (Apps Script V63, 72 actions)
+TypeScript build: delegated to GitHub Actions because npm dependency installation timed out in build environment before vite/client types were available.
