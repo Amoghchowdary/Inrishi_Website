@@ -1,0 +1,6 @@
+INRISHI MAIN V76 — EXIT CONTROL
+Frontend 76.0.0 | Backend 63.0.0
+PASS: config, dependencies policy, CSS, design, typing guards, architecture, Pages paths, navigation, route recovery, backend transport, runtime exports, auth, portal workflows, permissions, incentives, chat, SEO, 72-action contract, V76 storytelling, V76 integration, historical regression, production boundary, UI, TS/TSX syntax.
+Required V76 design gates: no “How it works”; short hero; image assets present; white/black tile hover; continuous reel; ERP absent publicly.
+
+GTM EXIT CONTROL: Main must contain GTM-WSCMN3T2 exactly once and must not contain GTM-NH8FPTZF.

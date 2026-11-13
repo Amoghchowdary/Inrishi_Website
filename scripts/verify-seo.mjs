@@ -8,4 +8,4 @@ need(sitemap.includes('inrishi.in'),'sitemap domain missing.');
 need(robots.toLowerCase().includes('sitemap'),'robots sitemap reference missing.');
 need(home.includes('https://partner.inrishi.in/'),'Main Partner acquisition CTA missing.');
 if(e.length){console.error(e.map(x=>`ERROR: ${x}`).join('\n'));process.exit(1)}
-console.log('V75 Main SEO gate passed: current product positioning, sitemap and Partner acquisition CTA are present.');
+console.log('V76 Main SEO gate passed: current product positioning, sitemap and Partner acquisition CTA are present.');

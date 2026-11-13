@@ -1,4 +1,4 @@
-name: Deploy INRISHI Main V75 Production
+name: Deploy INRISHI Main V76 Production
 
 on:
   push:
