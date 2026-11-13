@@ -1,5 +1,5 @@
-INRISHI MAIN V74 — STORYTELLING & VISUAL REFINEMENT
-Frontend: 74.0.0
+INRISHI MAIN V75 — STORYTELLING & VISUAL REFINEMENT
+Frontend: 75.0.0
 Backend contract: Apps Script 63.0.0 (unchanged)
 
 Changes:
@@ -12,3 +12,10 @@ Changes:
 - Default public typography remains white.
 - ERP remains removed from public discovery surfaces.
 - Existing backend/authentication/database behavior is unchanged.
+
+V75 realistic-image upgrade:
+- adds real business photography;
+- adds photoreal software scenes;
+- replaces icon-only Partner support cards with realistic visual explanations;
+- keeps public product set Website, CRM, Employee Management, AI Automation;
+- backend remains Apps Script V63.
