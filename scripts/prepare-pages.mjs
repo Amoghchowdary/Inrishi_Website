@@ -2,13 +2,12 @@ import fs from "node:fs";import path from "node:path";
 const raw=(process.argv[2]||process.env.SITE_DOMAIN||"").trim().replace(/^https?:\/\//,"").replace(/\/$/,"");if(!raw||!/^[a-z0-9.-]+$/i.test(raw)){console.error("ERROR: SITE_DOMAIN is required");process.exit(1)}
 const dist=path.resolve("dist");if(!fs.existsSync(dist)){console.error("ERROR: dist/ not found");process.exit(1)}const origin=`https://${raw}`;
 const pages=[
- ["/","Inrishi | Intelligence inside.","Inrishi provides AI business transformation, ERP, CRM, employee management, custom software, SaaS products and website design with search-readiness support."],
- ["/services","Business Software, ERP, CRM, AI Automation & Website Services | Inrishi","Explore Inrishi services including AI business transformation, ERP, CRM, employee management, books customization, custom software, SaaS products and website design."],
+ ["/","Inrishi | Intelligence inside.","Inrishi provides AI business transformation, CRM, employee management, custom software, SaaS products and website design with search-readiness support."],
+ ["/services","Business Software, CRM, AI Automation & Website Services | Inrishi","Explore Inrishi services including AI business transformation, CRM, employee management, books customization, custom software, SaaS products and website design."],
  ["/partner-program","Become an Inrishi Partner | Partner Program","Learn how to become an Inrishi Partner, refer eligible services, track customer conversion and become eligible for configured incentives."],
  ["/sample-work","Sample Work | Inrishi","Explore examples of Inrishi business software, automation and digital implementation work."],
- ["/contact","Contact Inrishi | Business Software & Automation","Contact Inrishi to discuss business software, automation, ERP, CRM, custom software or website requirements."],
+ ["/contact","Contact Inrishi | Business Software & Automation","Contact Inrishi to discuss business software, automation, CRM, employee management, custom software or website requirements."],
  ["/services/ai-business-transformation","AI Business Transformation Services | Inrishi","Practical AI and automation for repetitive work, approvals, information flow and business visibility."],
- ["/services/erp","ERP Software & Business Operations | Inrishi","Connect sales, purchases, inventory, finance, records and approvals through an Inrishi ERP workflow."],
  ["/services/crm","CRM Software & Lead Management | Inrishi","Manage leads, follow-ups, customer history and sales conversion with Inrishi CRM workflows."],
  ["/services/employee-management","Employee Management Software | Inrishi","Organise employee records, attendance, leave, requests and people operations."],
  ["/services/books-customization","Accounting & Books Customization | Inrishi","Adapt accounting and business-book workflows to your formats, approvals and reporting needs."],

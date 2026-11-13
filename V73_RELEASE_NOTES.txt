@@ -1,0 +1,11 @@
+INRISHI MAIN V73 — STORYTELLING BRAND RELEASE
+
+Frontend: 73.0.0
+Backend contract: 63.0.0
+
+- White-only public typography.
+- ERP removed from the sellable public product set.
+- Storytelling journey: Traditional -> Digital foundation -> AI-enabled.
+- Rich product visuals for Website, CRM, Employee Management and AI Automation.
+- High-finish dark-glass hover system and continuous product reel.
+- Existing backend and legacy records preserved.
