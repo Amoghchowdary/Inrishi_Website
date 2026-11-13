@@ -1,11 +1,7 @@
-# INRISHI Main Production — V73
+# INRISHI Main V74
+Production frontend for https://www.inrishi.in.
 
-Production frontend for `https://www.inrishi.in`.
-
-- GitHub repository: `Amoghchowdary/Inrishi_Website`
-- Main routes: `/`, `/contact`, `/sample-work`, `/customer-login`, `/customer-portal`, `/admin`
-- Partner site: `https://partner.inrishi.in` (separate frontend repository)
-- Backend: separate Google Apps Script Web App; no `.gs` backend source belongs in this repository.
-- Customer identity: customer's own registered Gmail + generated Customer ID; OTP-first registration/recovery.
-- Admin: authenticated Control Center with password change and centralized Customer/Partner/project management.
-- GitHub Actions performs backend-version check, strict TypeScript, dependency audits, production build, dist verification, Pages deployment and post-deploy smoke test.
+Public positioning: AI software for Indian businesses, centered on Business Website, CRM, Employee Management and AI Automation.
+V74 removes “How it works”, shortens the hero, increases image-led storytelling, and applies white-card/black-text hover only to tiles and slide/reel elements.
+Backend remains Apps Script V63 / contract 63.0.0.
+Deployment remains direct Robocopy into the persistent Git clone followed by Git push; no PS1 deployment files are included.

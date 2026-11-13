@@ -1,7 +1,0 @@
-INRISHI MAIN V73 — EXIT CONTROL
-Frontend: 73.0.0
-Backend contract: 63.0.0
-Public story: Website + CRM + Employee Management + AI Automation
-ERP: removed from public discovery and new-service selection surfaces
-Typography: public website text locked to white/white-opacity
-Deployment: GitHub Actions production build; no PS1 or .git in release folder

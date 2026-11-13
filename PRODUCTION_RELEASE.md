@@ -1,7 +1,10 @@
-# INRISHI Main V73 Production Release
+# INRISHI Main V74 Production Release
 
-Frontend `73.0.0` for `https://www.inrishi.in`.
+V74 is a visual storytelling and UI refinement release. It preserves the V63 backend, authentication and production topology while simplifying public navigation and increasing visual product explanation.
 
-This release requires the shared Apps Script backend contract `63.0.0` at the existing production `/exec` URL. GitHub Actions verifies backend health before installing dependencies or deploying Pages.
-
-V73 is a product-positioning rebuild: simplified AI-software positioning, product UI simulations, public pricing, enterprise/AI transformation sections, stronger navigation and legal footer pages. Existing Admin/Customer authentication and portal architecture are preserved.
+Production requirements:
+- frontend 74.0.0;
+- backend contract 63.0.0;
+- www.inrishi.in custom domain;
+- GitHub Actions live-backend gate before build/deploy;
+- no local-development step in production workflow.

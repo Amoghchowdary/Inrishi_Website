@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Traditional business">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset="1" stop-color="#0c1730"/></linearGradient>
+  <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5B7CFF"/><stop offset="1" stop-color="#8A5CFF"/></linearGradient>
+  <filter id="shadow"><feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#000" flood-opacity=".35"/></filter>
+</defs>
+<rect width="1200" height="760" rx="48" fill="url(#bg)"/>
+<circle cx="1020" cy="100" r="180" fill="#5B7CFF" opacity=".08"/><circle cx="120" cy="670" r="240" fill="#8A5CFF" opacity=".06"/>
+<text x="72" y="88" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Traditional business</text>
+<text x="72" y="126" fill="#c9d4e8" font-family="Arial, Helvetica, sans-serif" font-size="18">Good people carrying too much manual work.</text>
+
+<g transform="translate(70 170)">
+  <rect x="0" y="80" width="460" height="360" rx="28" fill="#111d31" stroke="#31415f"/>
+  <rect x="38" y="112" width="200" height="84" rx="14" fill="#17253d"/><rect x="258" y="112" width="160" height="84" rx="14" fill="#17253d"/>
+  <text x="58" y="146" fill="#fff" font-family="Arial" font-size="17" font-weight="700">Notebook</text><text x="58" y="174" fill="#aebbd1" font-family="Arial" font-size="13">Customer follow-ups</text>
+  <text x="278" y="146" fill="#fff" font-family="Arial" font-size="17" font-weight="700">Phone</text><text x="278" y="174" fill="#aebbd1" font-family="Arial" font-size="13">Orders &amp; calls</text>
+  <rect x="38" y="220" width="380" height="162" rx="18" fill="#0d1728" stroke="#263a5a"/>
+  <path d="M80 340 C140 260 210 372 270 290 C310 240 350 310 390 250" stroke="#7d8aa5" stroke-width="7" fill="none" opacity=".6"/>
+  <text x="60" y="250" fill="#fff" font-family="Arial" font-size="16" font-weight="700">Spreadsheet + messages</text>
+  <text x="60" y="410" fill="#aebbd1" font-family="Arial" font-size="14">Information is everywhere. Nothing is connected.</text>
+</g>
+<g transform="translate(620 210)" filter="url(#shadow)">
+  <rect width="500" height="300" rx="30" fill="#101b2e" stroke="#334768"/>
+  <circle cx="92" cy="82" r="42" fill="#1a2942"/><path d="M78 84h28M92 70v28" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+  <text x="158" y="74" fill="#fff" font-family="Arial" font-size="22" font-weight="700">Manual business</text><text x="158" y="106" fill="#b9c4d7" font-family="Arial" font-size="15">Good people. Too much repeated work.</text>
+  <rect x="44" y="150" width="412" height="1" fill="#263956"/>
+  <text x="48" y="198" fill="#fff" font-family="Arial" font-size="17">• enquiries depend on memory</text><text x="48" y="236" fill="#fff" font-family="Arial" font-size="17">• customer data stays scattered</text><text x="48" y="274" fill="#fff" font-family="Arial" font-size="17">• managers spend time chasing updates</text>
+</g>
+</svg>

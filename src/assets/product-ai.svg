@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="AI Automation">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset="1" stop-color="#0c1730"/></linearGradient>
+  <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5B7CFF"/><stop offset="1" stop-color="#8A5CFF"/></linearGradient>
+  <filter id="shadow"><feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#000" flood-opacity=".35"/></filter>
+</defs>
+<rect width="1200" height="760" rx="48" fill="url(#bg)"/>
+<circle cx="1020" cy="100" r="180" fill="#5B7CFF" opacity=".08"/><circle cx="120" cy="670" r="240" fill="#8A5CFF" opacity=".06"/>
+<text x="72" y="88" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">AI Automation</text>
+<text x="72" y="126" fill="#c9d4e8" font-family="Arial, Helvetica, sans-serif" font-size="18">Support, documents and workflows that move automatically.</text>
+
+<g transform="translate(70 170)">
+  <rect x="0" y="90" width="270" height="170" rx="24" fill="#111f35" stroke="#304a78"/><text x="30" y="138" fill="#fff" font-family="Arial" font-size="19" font-weight="700">Customer asks</text><text x="30" y="174" fill="#c3cce0" font-family="Arial" font-size="14">Message, call or enquiry</text>
+  <path d="M280 175h110" stroke="url(#a)" stroke-width="7" stroke-linecap="round"/><path d="M378 160l26 15-26 15" fill="none" stroke="#fff" stroke-width="5"/>
+  <rect x="410" y="50" width="300" height="250" rx="30" fill="#121f36" stroke="#536dff" stroke-width="2" filter="url(#shadow)"/>
+  <circle cx="560" cy="125" r="48" fill="url(#a)" opacity=".9"/><rect x="528" y="105" width="64" height="44" rx="18" fill="#091321"/><circle cx="548" cy="127" r="6" fill="#fff"/><circle cx="572" cy="127" r="6" fill="#fff"/>
+  <text x="476" y="206" fill="#fff" font-family="Arial" font-size="22" font-weight="700">AI understands</text><text x="470" y="239" fill="#c3cce0" font-family="Arial" font-size="14">Intent, data and next action</text>
+  <path d="M720 175h110" stroke="url(#a)" stroke-width="7" stroke-linecap="round"/><path d="M818 160l26 15-26 15" fill="none" stroke="#fff" stroke-width="5"/>
+  <rect x="850" y="90" width="270" height="170" rx="24" fill="#111f35" stroke="#304a78"/><text x="882" y="138" fill="#fff" font-family="Arial" font-size="19" font-weight="700">Workflow runs</text><text x="882" y="174" fill="#c3cce0" font-family="Arial" font-size="14">Task, reply or document</text>
+</g>
+<g transform="translate(170 520)"><rect width="860" height="100" rx="24" fill="#0e192c" stroke="#283d61"/><text x="38" y="43" fill="#fff" font-family="Arial" font-size="18" font-weight="700">AI handles the repeated work. Your team keeps the decision.</text><text x="38" y="72" fill="#b9c4d8" font-family="Arial" font-size="14">Faster response · fewer missed actions · less repetitive admin</text></g>
+</svg>

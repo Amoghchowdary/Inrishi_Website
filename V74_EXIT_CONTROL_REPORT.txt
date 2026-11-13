@@ -1,0 +1,4 @@
+INRISHI MAIN V74 — EXIT CONTROL
+Frontend 74.0.0 | Backend 63.0.0
+PASS: config, dependencies policy, CSS, design, typing guards, architecture, Pages paths, navigation, route recovery, backend transport, runtime exports, auth, portal workflows, permissions, incentives, chat, SEO, 72-action contract, V74 storytelling, V74 integration, historical regression, production boundary, UI, TS/TSX syntax.
+Required V74 design gates: no “How it works”; short hero; image assets present; white/black tile hover; continuous reel; ERP absent publicly.

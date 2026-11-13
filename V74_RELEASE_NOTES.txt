@@ -1,0 +1,14 @@
+INRISHI MAIN V74 — STORYTELLING & VISUAL REFINEMENT
+Frontend: 74.0.0
+Backend contract: Apps Script 63.0.0 (unchanged)
+
+Changes:
+- Removed “How it works” from Main navigation, mobile navigation, page content and footer.
+- Shortened hero headline to “Make your business AI-ready.”
+- Added illustrated Traditional → Digital Foundation → AI-enabled business story.
+- Added image-led visual assets for Website, CRM, Employee Management and AI Automation.
+- Added image content to Services and the four primary product detail pages.
+- Tiles and reel/slide placeholders turn white with black text on pointer hover/focus only.
+- Default public typography remains white.
+- ERP remains removed from public discovery surfaces.
+- Existing backend/authentication/database behavior is unchanged.
