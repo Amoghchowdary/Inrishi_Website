@@ -1,0 +1,24 @@
+INRISHI MAIN V81 — HIGH-SKILL SEARCH ACQUISITION RELEASE
+
+Frontend: 81.0.0
+Backend contract: 64.0.0
+Main GTM: GTM-WSCMN3T2
+
+Five-layer search program:
+1. On-page SEO: page-specific titles, descriptions, headings, canonical/hreflang, answer-oriented content and internal links.
+2. Geographic SEO: factual INRISHI office, phone, Telangana/India signals, PostalAddress and India areaServed structured data.
+3. Search-engine SEO: focused sitemap, crawlable prerender HTML, robots controls, breadcrumbs and clean descriptive URLs.
+4. AI/AEO: explicit OAI-SearchBot access, structured entity/service answers, visible FAQs, llms.txt supplemental summary and self-contained facts.
+5. Product SEO: buyer-intent CRM, EMS, AI Automation and Website pages with audience, replaced workflows, outcomes, pricing context and common questions.
+
+New crawlable routes:
+- /about-inrishi
+- /industries
+
+Existing priority product routes strengthened:
+- /services/ai-business-transformation
+- /services/crm
+- /services/employee-management
+- /services/website-design
+
+Important: SEO improves eligibility, relevance and discovery but does not guarantee ranking position or indexing timing.

@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HeadContent, Link, Outlet, createRootRouteWithContext, useRouter, useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { CosmicEnvironment } from "@/components/cosmic-environment";
-import inrishiLogo from "@/assets/inrishi-public-logo.png";
+import inrishiLogo from "@/assets/inrishi-public-logo.webp";
 
 import { siteHref } from "@/lib/site-path";
 import { getRuntimeConfig } from "@/lib/runtime-config";
@@ -11,9 +11,9 @@ function NotFoundComponent() {
     <div className="relative z-10 flex min-h-screen items-center justify-center px-5 py-14">
       <section className="w-full max-w-2xl border border-white/10 bg-[#06111b]/90 p-8 text-center shadow-2xl backdrop-blur-xl sm:p-12">
         <img src={inrishiLogo} alt="INRISHI" className="mx-auto h-20 w-20 rounded-2xl object-contain" />
-        <p className="section-kicker mt-8">INRISHI NAVIGATION</p>
-        <h1 className="mt-3 font-display text-5xl font-semibold text-white">This page has moved.</h1>
-        <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-white/65">The requested page is not available at this address. Use the verified Inrishi routes below instead of leaving the website.</p>
+        <p className="section-kicker mt-8">404 / INRISHI</p>
+        <h1 className="mt-3 font-display text-5xl font-semibold text-white">Page not found.</h1>
+        <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-white/65">This address is not part of the current INRISHI production website. Use one of the verified routes below.</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <a href={siteHref("/")} className="inline-flex h-12 items-center bg-primary px-6 font-semibold text-slate-950">Main website</a>
           <a href={siteHref("/customer-login")} className="inline-flex h-12 items-center border border-white/15 px-6 font-semibold text-white">Customer Login</a>
@@ -63,7 +63,7 @@ function RootComponent() {
     pathname === "/customer-login" ||
     pathname === "/customer-portal" ||
     pathname === "/admin" ||
-    pathname.startsWith("/r/9f2a7c4d6e");
+    false;
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -4,4 +4,12 @@ Disallow: /admin
 Disallow: /r/
 Disallow: /customer-login
 Disallow: /customer-portal
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin
+Disallow: /r/
+Disallow: /customer-login
+Disallow: /customer-portal
+
 Sitemap: https://www.inrishi.in/sitemap.xml

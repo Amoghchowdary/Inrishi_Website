@@ -1,0 +1,22 @@
+import fs from 'node:fs';
+const e=[]; const need=(ok,msg)=>{if(!ok)e.push(msg)};
+const admin=fs.readFileSync('src/components/admin-workspace.tsx','utf8');
+const control=fs.readFileSync('src/services/admin-control.ts','utf8');
+const customerLogin=fs.readFileSync('src/routes/customer-login.tsx','utf8');
+const contract=JSON.parse(fs.readFileSync('backend-contract.json','utf8'));
+need(contract.version==='64.0.0','Backend contract must be V64.');
+need(contract.actions.length===74,'Backend contract must expose 74 actions.');
+need(admin.includes('const leads=p.leads??[],incentives=p.incentives??[]'),'Admin Partner view must tolerate legacy missing arrays.');
+need(admin.includes('Search partners by name, company, email or ID'),'Admin Partner search missing.');
+need(admin.includes('Search customers by name, company, email or ID'),'Admin Customer search missing.');
+need(admin.includes('resendPartnerApplicationAcknowledgementFn'),'Partner acknowledgement recovery missing.');
+need(admin.includes('resendCustomerCredentialsFn'),'Customer credential recovery missing.');
+need(admin.includes('applicationAcknowledgementSent'),'Partner thank-you delivery status missing.');
+need(admin.includes('onboardingEmailSent'),'Partner onboarding delivery status missing.');
+need(admin.includes('loginDelivered'),'Customer credential delivery status missing.');
+need(admin.includes('sessionStorage')&&admin.includes('#admin-'),'Admin snapshot cache/hash navigation missing.');
+need(control.includes('admin.customer.credentials.resend'),'Customer credential resend backend action missing.');
+need(control.includes('admin.partner.application.ack.resend'),'Partner acknowledgement resend backend action missing.');
+need(customerLogin.includes('contact')||customerLogin.includes('Admin'),'Customer login recovery guidance missing.');
+if(e.length){console.error(e.map(x=>`ERROR: ${x}`).join('\n'));process.exit(1)}
+console.log('V81 Main/Admin reliability gate passed: legacy Partner data, customer access recovery, email-delivery visibility and cached navigation are locked.');

@@ -1,11 +1,20 @@
-import fs from 'node:fs';
-const e=[];const need=(ok,msg)=>{if(!ok)e.push(msg)};const read=f=>fs.readFileSync(f,'utf8');
-const home=read('src/routes/index.tsx'),html=read('index.html'),sitemap=read('public/sitemap.xml'),robots=read('public/robots.txt');
-for(const m of ['AI software for Indian businesses','Business Website','CRM','Employee Management','AI Automation'])need(home.includes(m),`Main acquisition/SEO marker missing: ${m}`);
-need(!home.includes('title:"ERP"')&&!sitemap.includes('/services/erp'),'ERP remains in the public acquisition surface.');
-need(html.toLowerCase().includes('inrishi'),'index.html brand metadata missing.');
-need(sitemap.includes('inrishi.in'),'sitemap domain missing.');
-need(robots.toLowerCase().includes('sitemap'),'robots sitemap reference missing.');
-need(home.includes('https://partner.inrishi.in/'),'Main Partner acquisition CTA missing.');
-if(e.length){console.error(e.map(x=>`ERROR: ${x}`).join('\n'));process.exit(1)}
-console.log('V76 Main SEO gate passed: current product positioning, sitemap and Partner acquisition CTA are present.');
+import fs from "node:fs";
+const errors=[];const need=(ok,msg)=>{if(!ok)errors.push(msg)};const read=f=>fs.readFileSync(f,"utf8");
+const html=read("index.html"),home=read("src/routes/index.tsx"),services=read("src/routes/services.tsx"),about=read("src/routes/about-inrishi.tsx"),industries=read("src/routes/industries.tsx"),crm=read("src/routes/service-crm.tsx"),ems=read("src/routes/service-employee-management.tsx"),ai=read("src/routes/service-ai-business-transformation.tsx"),web=read("src/routes/service-website-design.tsx"),sitemap=read("public/sitemap.xml"),robots=read("public/robots.txt"),prep=read("scripts/prepare-pages.mjs"),llms=read("public/llms.txt");
+for(const marker of ["INRISHI PRIVATE LIMITED","AI Automation","CRM","Employee Management","Business Website"])need(home.includes(marker)||services.includes(marker)||about.includes(marker),`Brand/service marker missing: ${marker}`);
+for(const marker of ["Organization","WebSite","alternateName","areaServed","PostalAddress","telephone","inrishi-public-logo.png"])need(html.includes(marker)||prep.includes(marker),`Structured entity signal missing: ${marker}`);
+for(const route of ["/about-inrishi","/industries","/services/ai-business-transformation","/services/crm","/services/employee-management","/services/website-design"])need(sitemap.includes(route),`Focused sitemap route missing: ${route}`);
+for(const stale of ["/services/books-customization","/services/saas-products"])need(!sitemap.includes(stale),`Legacy/diluting route still in sitemap: ${stale}`);
+need((sitemap.match(/<lastmod>/g)||[]).length>=11,"Sitemap lastmod coverage is incomplete");
+need(robots.includes("OAI-SearchBot"),"OAI-SearchBot explicit crawl support missing");
+need(robots.includes("Sitemap: https://www.inrishi.in/sitemap.xml"),"Canonical sitemap declaration missing");
+need(prep.includes('id="seo-prerender"'),"Static crawlable prerender content missing");
+for(const marker of ["Service","BreadcrumbList","FAQPage","OfferCatalog","AboutPage","CollectionPage"])need(prep.includes(marker),`Structured data type missing: ${marker}`);
+need(prep.includes('hreflang="en-IN"')&&prep.includes('hreflang="x-default"'),"Hreflang signals missing");
+need(html.includes('max-image-preview:large'),"Enhanced robots preview directive missing");
+need(html.includes('GTM-WSCMN3T2'),"Main GTM missing after SEO changes");
+need(llms.includes("INRISHI PRIVATE LIMITED")&&llms.includes("AI automation")&&llms.includes("CRM software"),"llms.txt entity/service summary incomplete");
+need(about.includes("Hyderabad")&&about.includes("Telangana 502307"),"Factual geographic company page missing");
+need(industries.includes("Startups & SMEs")&&industries.includes("Manufacturers & distributors"),"Industry coverage page incomplete");
+for(const [name,src] of [["CRM",crm],["EMS",ems],["AI",ai],["Website",web]]){need(src.includes("COMMON QUESTIONS")||src.includes("SeoServiceSections"),`${name} answer-oriented content missing`);need(src.includes("India")||src.includes("Indian"),`${name} India relevance missing`)}
+if(errors.length){console.error(errors.map(x=>`ERROR: ${x}`).join("\n"));process.exit(1)}console.log("V81 Main SEO gate passed: on-page, geographic/entity, search, AI/AEO and product-intent signals are present.");

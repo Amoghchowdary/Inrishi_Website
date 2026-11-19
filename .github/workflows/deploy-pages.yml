@@ -1,4 +1,4 @@
-name: Deploy INRISHI Main V76 Production
+name: Deploy INRISHI Main V81 Production
 
 on:
   push:
@@ -38,10 +38,21 @@ jobs:
         run: npm install --include=dev --no-audit --no-fund --strict-peer-deps
       - name: Dependency tree
         run: npm ls --depth=0
+      - name: Clean previous build artifact
+        run: rm -rf dist
       - name: Production acceptance checks
         run: npm run preflight
       - name: Prepare GitHub Pages artifact
         run: npm run prepare:pages -- "$SITE_DOMAIN"
+      - name: Verify V81 single-production artifact topology
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f dist/404.html
+          grep -q "404 / INRISHI" dist/404.html
+          ! grep -Eq "location\.replace|/\?/|~and~" dist/404.html
+          for p in services about-inrishi industries sample-work contact admin customer-login customer-portal; do test -f "dist/$p/index.html"; done
+          for p in services/books-customization services/custom-software services/saas-products r; do test ! -e "dist/$p"; done
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6
       - name: Upload Pages artifact
@@ -67,9 +78,15 @@ jobs:
           ok=0
           for attempt in 1 2 3 4 5 6; do
             if body=$(curl --fail --silent --show-error --location --max-time 20 "$URL"); then
-              if printf '%s' "$body" | grep -qi "Inrishi"; then ok=1; break; fi
+              if printf '%s' "$body" | grep -qi "Inrishi" && printf '%s' "$body" | grep -q "GTM-WSCMN3T2"; then ok=1; break; fi
             fi
             sleep 5
           done
-          test "$ok" -eq 1 || { echo "Production smoke test failed: deployed page did not return INRISHI HTML."; exit 1; }
-          echo "Production smoke test passed."
+          test "$ok" -eq 1 || { echo "Production smoke test failed: deployed page did not return INRISHI HTML with the expected GTM container."; exit 1; }
+          code=$(curl --silent --output /dev/null --write-out "%{http_code}" --max-time 20 "$URL/v81-route-that-must-not-exist")
+          test "$code" = "404" || { echo "Expected hard 404 for unknown route, got HTTP $code"; exit 1; }
+          for path in services admin customer-login; do
+            code=$(curl --silent --output /dev/null --write-out "%{http_code}" --max-time 20 "$URL/$path/")
+            test "$code" = "200" || { echo "Expected HTTP 200 for /$path/, got $code"; exit 1; }
+          done
+          echo "Production smoke test passed with strict 404 topology."

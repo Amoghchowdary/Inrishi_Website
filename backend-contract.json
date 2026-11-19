@@ -1,5 +1,5 @@
 {
-  "version": "63.0.0",
+  "version": "64.0.0",
   "transport": "apps-script-form-post",
   "actions": [
     "admin.accounts.create",
@@ -10,10 +10,12 @@
     "admin.accounts.status",
     "admin.control.snapshot",
     "admin.controls.save",
+    "admin.customer.credentials.resend",
     "admin.customer.status",
     "admin.incentive.status",
     "admin.inquiries.list",
     "admin.inquiries.status",
+    "admin.partner.application.ack.resend",
     "admin.partner.credentials.resend",
     "admin.partner.services.save",
     "admin.partner.status",

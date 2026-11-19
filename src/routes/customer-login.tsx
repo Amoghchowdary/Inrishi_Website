@@ -2,7 +2,7 @@ import { createFileRoute,redirect } from "@tanstack/react-router";
 import { ArrowLeft,ArrowRight,Eye,EyeOff,KeyRound,ShieldCheck,UserPlus,UserRoundSearch } from "lucide-react";
 import { useState,type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
-import inrishiLogo from "@/assets/inrishi-public-logo.png";
+import inrishiLogo from "@/assets/inrishi-public-logo.webp";
 import { beginCustomerLoginFn,changeCustomerPasswordFn,completeCustomerRecoveryFn,completeCustomerRegistrationFn,getCurrentCustomerFn,requestCustomerRecoveryOtpFn,requestCustomerRegistrationOtpFn,verifyCustomerLoginOtpFn,verifyCustomerRecoveryOtpFn,verifyCustomerRegistrationOtpFn,type CustomerRecoveryKind } from "@/services/customer-auth";
 import { siteHref } from "@/lib/site-path";
 export const Route=createFileRoute("/customer-login")({head:()=>({meta:[{title:"Customer Login | Inrishi"},{name:"robots",content:"noindex,nofollow"}]}),beforeLoad:async()=>{const c=await getCurrentCustomerFn();if(c)throw redirect({to:"/customer-portal"})},component:CustomerLogin});

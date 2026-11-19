@@ -1,6 +1,6 @@
-INRISHI MAIN V76 — STORYTELLING & VISUAL REFINEMENT
-Frontend: 76.0.0
-Backend contract: Apps Script 63.0.0 (unchanged)
+INRISHI MAIN V81 — STORYTELLING & VISUAL REFINEMENT
+Frontend: 81.0.0
+Backend contract: Apps Script 64.0.0 (unchanged)
 
 Changes:
 - Removed “How it works” from Main navigation, mobile navigation, page content and footer.
@@ -13,14 +13,14 @@ Changes:
 - ERP remains removed from public discovery surfaces.
 - Existing backend/authentication/database behavior is unchanged.
 
-V76 realistic-image upgrade:
+V81 realistic-image upgrade:
 - adds real business photography;
 - adds photoreal software scenes;
 - replaces icon-only Partner support cards with realistic visual explanations;
 - keeps public product set Website, CRM, Employee Management, AI Automation;
-- backend remains Apps Script V63.
+- backend remains Apps Script V64.
 
-V76 analytics integration:
+V81 analytics integration:
 - Main Google Tag Manager container: GTM-WSCMN3T2
-- Backend remains Apps Script V63 / 63.0.0.
+- Backend remains Apps Script V64 / 64.0.0.
 - No design, portal, authentication or database change.

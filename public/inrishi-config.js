@@ -1,5 +1,5 @@
 window.INRISHI_CONFIG = Object.freeze({
-  APP_VERSION: "76.0.0",
+  APP_VERSION: "81.0.0",
   ENVIRONMENT: "production",
   SITE_ID: "main",
   APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbzQ1YMIghWp_p3hy3NxsJraffY_AjLA77JlyfYF7YvkGlylLnV2MiDgJViLjByn9ntq/exec",
@@ -15,8 +15,7 @@ window.INRISHI_CONFIG = Object.freeze({
       partnerLogin: "https://partner.inrishi.in/login",
       partnerRegister: "https://partner.inrishi.in/register",
       partnerPortal: "https://partner.inrishi.in/portal",
-      adminEntry: "/admin",
-      hiddenAdminEntry: "/r/9f2a7c4d6e"
+      adminEntry: "/admin"
     }),
     partner: Object.freeze({
       home: "https://partner.inrishi.in/",

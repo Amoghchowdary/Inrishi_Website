@@ -1,13 +1,19 @@
-# INRISHI Main V76 Production Release
+# INRISHI Main/Admin V81 Production Release
 
-V76 is a visual storytelling and UI refinement release. It preserves the V63 backend, authentication and production topology while simplifying public navigation and increasing visual product explanation.
+V81 is the single-production refinish. It removes legacy route recovery and retired route modules, keeps one canonical Main/Admin/Customer frontend, preserves the V80 five-layer SEO work, and adds a terminal custom 404 for every non-whitelisted URL.
 
-Production requirements:
-- frontend 76.0.0;
-- backend contract 63.0.0;
-- www.inrishi.in custom domain;
-- GitHub Actions live-backend gate before build/deploy;
-- no local-development step in production workflow.
+## Production topology
+- Main: https://www.inrishi.in
+- Admin: /admin
+- Customer login: /customer-login
+- Customer portal: /customer-portal
+- Partner: https://partner.inrishi.in
+- Backend: Apps Script V64 / contract 64.0.0
 
-## V76 analytics
-Google Tag Manager is connected using `GTM-WSCMN3T2` on the Main site. The release gate verifies the container ID before production build/deployment.
+## V81 controls
+- No hidden duplicate Admin alias.
+- Retired service routes physically removed.
+- Unknown URLs return the custom hard 404 instead of being rewritten into the SPA.
+- Public SEO routes remain crawlable and prerendered.
+- Private routes are direct-entry compatible and noindex.
+- GitHub Actions rebuilds from a clean dist and verifies HTTP 404 behavior after deployment.

@@ -1,0 +1,14 @@
+INRISHI Main + Admin V81 RELIABILITY RELEASE
+Frontend: 81.0.0
+Backend contract: 64.0.0
+
+Fixes:
+- Backend V64 fast state path and background relational mirror sync.
+- Safe legacy partner/customer array normalization.
+- Cached stale-while-revalidate portal snapshots for faster navigation.
+- Sticky desktop and horizontal mobile portal navigation.
+- Partner application acknowledgement email tracking.
+- Partner approval email includes brochure + Partner Terms + Privacy + Terms of Use.
+- Customer credential resend/recovery action for Admin.
+- Partner legal pages deployed locally on partner.inrishi.in.
+- GTM and performance optimizations preserved and verified in V81.

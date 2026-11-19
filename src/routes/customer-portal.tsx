@@ -8,7 +8,7 @@ import { createCustomerRequirementFn } from "@/services/platform";
 import { getCustomerPortalSnapshotFn } from "@/services/customer-portal";
 import { loadPortalStore,type PortalStore,calculateCustomerProgress } from "@/lib/portal-store";
 import { openPortalFile,putPortalFile } from "@/lib/portal-file-db";
-import inrishiLogo from "@/assets/inrishi-public-logo.png";
+import inrishiLogo from "@/assets/inrishi-public-logo.webp";
 import { siteHref } from "@/lib/site-path";
 export const Route=createFileRoute("/customer-portal")({head:()=>({meta:[{title:"Customer Portal | Inrishi"},{name:"robots",content:"noindex,nofollow"}]}),loader:async()=>{const c=await getCurrentCustomerFn();if(!c)throw redirect({to:"/customer-login"});return c},component:CustomerPortal});
 type Tab="overview"|"requirements"|"services"|"payments"|"progress"|"chat"|"documents"|"profile"|"settings";

@@ -1,0 +1,10 @@
+INRISHI Main/Admin V81 - Single Production Refinish
+
+- Removed SPA 404 route recovery that could revive retired/old routes.
+- Unknown URLs now stop at a terminal custom INRISHI 404 page.
+- Valid production routes are explicitly whitelisted and generated for direct navigation.
+- Retired Main routes are physically removed from the source/build.
+- V80 SEO/AEO/GEO/product-search work is preserved on valid public routes.
+- Apps Script backend contract remains 64.0.0.
+- GTM containers remain unchanged.
+- Workspace UI receives V81 navigation/card refinishing.

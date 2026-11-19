@@ -1,0 +1,14 @@
+AFTER V81 IS LIVE
+
+1. Google Search Console -> URL Inspection -> inspect https://www.inrishi.in/ -> Request indexing.
+2. Inspect and request indexing for:
+   https://www.inrishi.in/services
+   https://www.inrishi.in/services/ai-business-transformation
+   https://www.inrishi.in/services/crm
+   https://www.inrishi.in/services/employee-management
+   https://www.inrishi.in/services/website-design
+3. Search Console -> Sitemaps -> submit or refresh https://www.inrishi.in/sitemap.xml once.
+4. Confirm Page Indexing shows the public routes as crawlable/indexable.
+5. Confirm URL Inspection reports Google-selected canonical matching the declared www.inrishi.in canonical.
+6. Monitor Performance queries for INRISHI, INRISHI PRIVATE LIMITED, AI automation, CRM software, employee management software and business website development.
+7. Do not repeatedly resubmit unchanged sitemap every day.

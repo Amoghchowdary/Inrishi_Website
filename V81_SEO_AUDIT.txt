@@ -1,0 +1,23 @@
+INRISHI MAIN V81 SEO AUDIT
+
+Status: PASS
+Date: 2026-11-19
+
+External finding before V81:
+- Brand search for INRISHI did not reliably surface www.inrishi.in.
+- Unrelated Ishi/INRISHI results dominated generic search results.
+
+V81 fixes:
+- Strong INRISHI PRIVATE LIMITED entity signals.
+- Focused titles/descriptions for brand + four commercial service pages.
+- Organization, WebSite, Service and BreadcrumbList structured data.
+- Static crawlable HTML generated for 9 public URLs before React executes.
+- Focused sitemap with lastmod on all public URLs.
+- Canonical URLs, OG/Twitter metadata and preferred logo image.
+- Crawlable internal links between public service pages.
+- Legacy low-priority service URLs removed from sitemap and marked noindex in source.
+- Private Admin/Customer routes remain excluded from search.
+- GTM-WSCMN3T2 preserved.
+- Backend contract remains 64.0.0.
+
+Important: SEO implementation improves eligibility and relevance; Google decides crawl/index/ranking timing.
